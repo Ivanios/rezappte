@@ -5,18 +5,76 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "titel"
+  "title",
+  "information",
+  "effort",
+  "column_break_4",
+  "vegetarian",
+  "vegan",
+  "lactose",
+  "gluten",
+  "origin",
+  "region"
  ],
  "fields": [
   {
-   "fieldname": "titel",
+   "fieldname": "title",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Titel",
    "reqd": 1
+  },
+  {
+   "fieldname": "information",
+   "fieldtype": "Section Break",
+   "label": "Informationen"
+  },
+  {
+   "fieldname": "effort",
+   "fieldtype": "Int",
+   "label": "Aufwand (min.)"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "vegetarian",
+   "fieldtype": "Check",
+   "label": "Vegetarisch"
+  },
+  {
+   "default": "0",
+   "fieldname": "vegan",
+   "fieldtype": "Check",
+   "label": "Vegan"
+  },
+  {
+   "fieldname": "origin",
+   "fieldtype": "Select",
+   "label": "Herkunft",
+   "options": "Schweizerisch\n\u00d6sterreichisch\nDeutsch\nItalienisch\nFranz\u00f6sisch\nChinesisch\nThail\u00e4ndisch\nVietnamesisch"
+  },
+  {
+   "fieldname": "region",
+   "fieldtype": "Data",
+   "label": "Region",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "lactose",
+   "fieldtype": "Check",
+   "label": "Laktosefrei"
+  },
+  {
+   "fieldname": "gluten",
+   "fieldtype": "Data",
+   "label": "Glutenfrei"
   }
  ],
- "modified": "2023-10-26 21:19:50.841121",
+ "modified": "2023-10-27 14:19:26.885521",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Rezept",
@@ -36,7 +94,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1

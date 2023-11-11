@@ -43,15 +43,15 @@
   },
   {
    "fieldname": "ingridient",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Zutat",
-   "options": "Bitte w\u00e4hlen...\nSpagetthi\nTomatensauce",
+   "options": "Zutaten",
    "reqd": 1
   }
  ],
  "istable": 1,
- "modified": "2023-11-11 10:13:29.194277",
+ "modified": "2023-11-11 18:11:15.499605",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Rezept Zutaten",

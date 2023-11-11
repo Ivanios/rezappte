@@ -1,0 +1,64 @@
+{
+ "autoname": "Z-.#####",
+ "creation": "2023-11-02 20:14:20.182106",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "amount",
+  "uom",
+  "ingridient",
+  "alternative",
+  "optional"
+ ],
+ "fields": [
+  {
+   "fieldname": "amount",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Menge",
+   "reqd": 1
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Einheit",
+   "options": "Bitte w\u00e4hlen...\nml\ndl\ncl\nl\ng\nkg\nStk\nTeel\u00f6ffel\nMesserspitze",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "alternative",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Alternative"
+  },
+  {
+   "default": "0",
+   "fieldname": "optional",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Optional"
+  },
+  {
+   "fieldname": "ingridient",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Zutat",
+   "options": "Bitte w\u00e4hlen...\nSpagetthi\nTomatensauce",
+   "reqd": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2023-11-11 10:13:29.194277",
+ "modified_by": "Administrator",
+ "module": "Rezappte",
+ "name": "Rezept Zutaten",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

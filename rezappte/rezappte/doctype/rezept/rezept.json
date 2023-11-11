@@ -8,13 +8,16 @@
   "title",
   "information",
   "effort",
+  "ingredients_qty",
   "column_break_4",
   "vegetarian",
   "vegan",
   "lactose",
   "gluten",
   "origin",
-  "region"
+  "region",
+  "section_break_12",
+  "ingredients"
  ],
  "fields": [
   {
@@ -54,7 +57,7 @@
    "fieldname": "origin",
    "fieldtype": "Select",
    "label": "Herkunft",
-   "options": "Schweizerisch\n\u00d6sterreichisch\nDeutsch\nItalienisch\nFranz\u00f6sisch\nChinesisch\nThail\u00e4ndisch\nVietnamesisch"
+   "options": "Schweiz\n\u00d6sterreich\nDeutschland\nItalien\nFrankreich\nChina\nThailand\nJapan\nVietnam"
   },
   {
    "fieldname": "region",
@@ -69,12 +72,29 @@
    "label": "Laktosefrei"
   },
   {
+   "default": "0",
    "fieldname": "gluten",
-   "fieldtype": "Data",
+   "fieldtype": "Check",
    "label": "Glutenfrei"
+  },
+  {
+   "fieldname": "ingredients_qty",
+   "fieldtype": "Int",
+   "label": "Anzahl Zutaten"
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "ingredients",
+   "fieldtype": "Table",
+   "label": "Zutaten",
+   "options": "Rezept Zutaten",
+   "reqd": 1
   }
  ],
- "modified": "2023-10-27 14:19:26.885521",
+ "modified": "2023-11-11 08:46:12.421245",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Rezept",

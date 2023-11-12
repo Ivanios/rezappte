@@ -8,21 +8,35 @@ from frappe.model.document import Document
 
 class Rezept(Document):
 	pass
+	
+@frappe.whitelist()
+def fill_uom(ingredient):
+	frappe.log_error(ingredient, "ingredient")
+	
+	uom = frappe.db.get_value("Zutaten", {"Name": ingredient}, "uom")
+	
+	frappe.log_error(uom, "uom")
+	
 
-# ~ @frappe.whitelist()
-# ~ def calculate_ingredients(ingredients):
-	# ~ ing = """
-	# ~ SELECT `name` 
-	# ~ FROM `tabRezept Zutaten`
-	# ~ WHERE `alternative` = 0;"""
-	# ~ real_ingredients = []
-	# ~ for amount in ingredients:
-		# ~ frappe.log_error>(amount['alternative'], "amount")
-		# ~ frappe.log_error>(type(amount), "type")
-		# ~ if amount['alternative'] == 0 and amount['optional'] == 0:
-			# ~ real_ingredients.append(real_ingredients)
-	# ~ return len(real_ingredients)
-	# ~ return 7
+	return 7
+
+@frappe.whitelist()
+def calculate_ingredients(parent_name):
+	frappe.log_error(parent_name, "parent_name")
+	ing = frappe.db.sql("""
+	SELECT `name` 
+	FROM `tabRezept Zutaten`
+	WHERE `parent` = '{name}'
+	AND `alternative` = 0
+	AND `optional` = 0;
+	""".format(name=parent_name), as_list=True)
+	frappe.log_error(len(ing), "ing")
+	
+	doc = frappe.get_doc("Rezept", parent_name)
+	doc.ingredients_qty = len(ing)
+	doc.save()
+
+	return
 
 # ~ def data():
 	    # ~ matching_projects = frappe.db.sql("""

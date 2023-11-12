@@ -87,6 +87,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "fetch_from": "Rezept Zutaten",
    "fieldname": "ingredients",
    "fieldtype": "Table",
    "label": "Zutaten",
@@ -94,7 +95,7 @@
    "reqd": 1
   }
  ],
- "modified": "2023-11-11 08:46:12.421245",
+ "modified": "2023-11-12 08:11:46.679421",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Rezept",

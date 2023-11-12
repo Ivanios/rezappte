@@ -5,9 +5,9 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "ingredient",
   "amount",
   "uom",
-  "ingridient",
   "alternative",
   "optional"
  ],
@@ -20,11 +20,12 @@
    "reqd": 1
   },
   {
+   "fetch_from": "Zutaten.uom",
    "fieldname": "uom",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Einheit",
-   "options": "Bitte w\u00e4hlen...\nml\ndl\ncl\nl\ng\nkg\nStk\nTeel\u00f6ffel\nMesserspitze",
+   "options": "Zutaten",
    "reqd": 1
   },
   {
@@ -42,7 +43,7 @@
    "label": "Optional"
   },
   {
-   "fieldname": "ingridient",
+   "fieldname": "ingredient",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Zutat",
@@ -51,7 +52,7 @@
   }
  ],
  "istable": 1,
- "modified": "2023-11-11 18:11:15.499605",
+ "modified": "2023-11-12 08:44:48.356053",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Rezept Zutaten",

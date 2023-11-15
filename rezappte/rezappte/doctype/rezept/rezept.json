@@ -78,16 +78,18 @@
    "label": "Glutenfrei"
   },
   {
+   "fetch_from": "ingredients.length",
    "fieldname": "ingredients_qty",
    "fieldtype": "Int",
-   "label": "Anzahl Zutaten"
+   "label": "Anzahl Zutaten",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_12",
    "fieldtype": "Section Break"
   },
   {
-   "fetch_from": "Rezept Zutaten",
+   "fetch_from": "Rezept.uom",
    "fieldname": "ingredients",
    "fieldtype": "Table",
    "label": "Zutaten",
@@ -95,7 +97,7 @@
    "reqd": 1
   }
  ],
- "modified": "2023-11-12 08:11:46.679421",
+ "modified": "2023-11-14 20:34:26.485928",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Rezept",

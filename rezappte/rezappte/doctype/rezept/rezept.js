@@ -2,9 +2,12 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Rezept', {
-    after_save: function(frm) {
-		calculate_ingredients(frm);
-    },
+    validate: function(frm) {
+		cur_frm.set_value("ingredients_qty", cur_frm.doc.ingredients.length);
+	},
+    //~ after_save: function(frm) {
+		//~ calculate_ingredients(frm);
+    //~ },
     origin: function(frm) {
         autocomplete_region(frm);
     }
@@ -39,19 +42,19 @@ function autocomplete_region() {
 
 
 
-function calculate_ingredients(frm) {
-	console.log("1");
-	frappe.call({
-        'method': 'rezappte.rezappte.doctype.rezept.rezept.calculate_ingredients',
-        'args': {
-            'parent_name': frm.doc.name
-        },
-        'callback': function(r) {
+//~ function calculate_ingredients(frm) {
+	//~ console.log("1");
+	//~ frappe.call({
+        //~ 'method': 'rezappte.rezappte.doctype.rezept.rezept.calculate_ingredients',
+        //~ 'args': {
+            //~ 'parent_name': frm.doc.name
+        //~ },
+        //~ 'callback': function(r) {
 			//~ console.log(r.message)
             //~ cur_frm.set_value("ingredients_qty", r.message);
-        }
-    });
-}
+        //~ }
+    //~ });
+//~ }
 
 //~ function calculate_ingredients(frm) {
 	//~ cur_frm.set_value("ingredients_qty", frm.doc.ingredients.length);

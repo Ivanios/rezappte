@@ -25,37 +25,3 @@ function autocomplete_region() {
 		cur_frm.set_value("region", "Europäisch");
     }
 }
-
-//~ function fill_uom(frm) {
-	//~ console.log("1")
-	//~ frappe.call({
-        //~ 'method': 'rezappte.rezappte.doctype.rezept.rezept.fill_uom',
-        //~ 'args': {
-            //~ 'ingredients': frm.doc.ingredients.ingredient
-        //~ },
-        //~ 'callback': function(r) {
-			//~ console.log("2")
-            //~ cur_frm.set_value("ingredients.ingredient", r.message);
-        //~ }
-    //~ });
-//~ }
-
-
-
-//~ function calculate_ingredients(frm) {
-	//~ console.log("1");
-	//~ frappe.call({
-        //~ 'method': 'rezappte.rezappte.doctype.rezept.rezept.calculate_ingredients',
-        //~ 'args': {
-            //~ 'parent_name': frm.doc.name
-        //~ },
-        //~ 'callback': function(r) {
-			//~ console.log(r.message)
-            //~ cur_frm.set_value("ingredients_qty", r.message);
-        //~ }
-    //~ });
-//~ }
-
-//~ function calculate_ingredients(frm) {
-	//~ cur_frm.set_value("ingredients_qty", frm.doc.ingredients.length);
-//~ }

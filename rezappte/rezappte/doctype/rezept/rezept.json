@@ -7,6 +7,7 @@
  "field_order": [
   "title",
   "information",
+  "persons_qty",
   "effort",
   "ingredients_qty",
   "column_break_4",
@@ -17,7 +18,9 @@
   "origin",
   "region",
   "section_break_12",
-  "ingredients"
+  "ingredients",
+  "instruction",
+  "hints"
  ],
  "fields": [
   {
@@ -95,9 +98,25 @@
    "label": "Zutaten",
    "options": "Rezept Zutaten",
    "reqd": 1
+  },
+  {
+   "fieldname": "instruction",
+   "fieldtype": "Text Editor",
+   "label": "Anleitung"
+  },
+  {
+   "fieldname": "hints",
+   "fieldtype": "Small Text",
+   "label": "Tipps vom Ersteller"
+  },
+  {
+   "fieldname": "persons_qty",
+   "fieldtype": "Int",
+   "label": "Anzahl Personen",
+   "reqd": 1
   }
  ],
- "modified": "2023-11-14 20:34:26.485928",
+ "modified": "2023-11-19 17:15:39.318282",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Rezept",

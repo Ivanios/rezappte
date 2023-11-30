@@ -25,8 +25,12 @@ def get_ingredients(recipe, persons):
 		LEFT JOIN `tabRezept` AS `sinv` ON `sinvitem`.`parent` = `sinv`.`name`
 		WHERE `sinv`.`name` = '{recipe}'
 		""".format(recipe=recipe), as_dict=True)
-
-	print(persons_qty)
+	
 	print(ingredients)
 	
-	return
+	#calculate real ingredients
+	for ingredient in ingredients:
+		new_amount = ingredient['amount'] / persons_qty * int(persons)
+		ingredient['amount'] = new_amount
+	
+	return ingredients

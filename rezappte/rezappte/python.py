@@ -10,6 +10,20 @@
 
 import frappe
 
+@frappe.whitelist()
+def get_recipe(recipe, persons):
+	#get ingredients for wished amount of persons
+	ingredients = get_ingredients(recipe, persons)
+	
+	#get the recipe instruction
+	instruction = frappe.db.sql("""
+		SELECT `instruction`
+		FROM `tabRezept`
+		WHERE `name` = '{recipe}'
+		""".format(recipe=recipe), as_dict=True)
+	
+	return ingredients, instruction
+
 def get_ingredients(recipe, persons):
 	#get the amount of persons, which the recipe is calculated for
 	persons_qty = frappe.db.get_value("Rezept", recipe, "persons_qty")
@@ -25,8 +39,6 @@ def get_ingredients(recipe, persons):
 		LEFT JOIN `tabRezept` AS `sinv` ON `sinvitem`.`parent` = `sinv`.`name`
 		WHERE `sinv`.`name` = '{recipe}'
 		""".format(recipe=recipe), as_dict=True)
-	
-	print(ingredients)
 	
 	#calculate real ingredients
 	for ingredient in ingredients:

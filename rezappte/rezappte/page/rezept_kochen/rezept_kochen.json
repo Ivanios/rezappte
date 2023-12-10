@@ -1,0 +1,26 @@
+{
+ "content": null,
+ "creation": "2023-12-10 10:31:45.262658",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2023-12-10 10:32:13.692423",
+ "modified_by": "Administrator",
+ "module": "Rezappte",
+ "name": "rezept_kochen",
+ "owner": "Administrator",
+ "page_name": "rezept_kochen",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Rezappte User"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0,
+ "title": "Rezept kochen"
+}

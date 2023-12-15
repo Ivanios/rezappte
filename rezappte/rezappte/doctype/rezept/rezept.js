@@ -4,6 +4,7 @@
 frappe.ui.form.on('Rezept', {
     validate: function(frm) {
 		cur_frm.set_value("ingredients_qty", cur_frm.doc.ingredients.length);
+		autocomplete_region(frm);
 	},
     //~ after_save: function(frm) {
 		//~ calculate_ingredients(frm);

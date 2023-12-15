@@ -10,6 +10,13 @@
 
 import frappe
 
+@frappe.whitelist()	
+def get_recipe_html(recipe_no, persons):
+	ingredients, instruction = get_recipe(recipe_no, persons)
+	frappe.log_error(ingredients, "ingredients")
+	frappe.log_error(instruction, "instruction")
+	return
+
 @frappe.whitelist()
 def get_recipe(recipe, persons):
 	#get ingredients for wished amount of persons

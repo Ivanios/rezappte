@@ -9,6 +9,8 @@ frappe.pages['rezept_kochen'].on_page_load = function(wrapper) {
     frappe.rezept_kochen.make(page);
     // run page
     frappe.rezept_kochen.run(page);
+    // Display recipe
+    frappe.rezept_kochen.display(page);
     
     // add the application reference
     frappe.breadcrumbs.add("Rezappte");
@@ -22,16 +24,17 @@ frappe.pages['rezept_kochen'].on_page_load = function(wrapper) {
 
 frappe.rezept_kochen = {
 	make: function(page) {
-		console.log("make");
+		var me = frappe.rezept_kochen;
+        me.page = page;
+        me.body = $('<div id="container-rezept"></div>').appendTo(me.page.main);
 	},
 	run: function() {
 		console.log("run");
 		get_choice();
+	},
+	display: function() {
+		console.log("display");
 	}
-	//~ display: function() {
-		//~ console.log("display");
-		
-	//~ }
 }
 
 function get_choice() {
@@ -56,9 +59,12 @@ function get_recipe(values) {
 			'persons': values.person_qty
 		},
 		'callback': function(response) {
-			var recipe = response.message
-			//~ console.log(recipe);
-			//~ get_recipe_html(recipe);
+			if (response.message) {
+				var recipe = response.message
+				var container = document.getElementById("container-rezept");
+				container.innerHTML = recipe; 
+				//~ $('body').html(recipe);
+			}
 		}
 	});
 }

@@ -1,3 +1,64 @@
-<div>
-	<p>Hallo</p>
-</div>
+<style>
+	
+.tableclass td, th {
+	color: pink;
+}
+
+.title {
+	font-size: 20px;
+}
+
+.tacenter {
+	text-align: center;
+}
+	
+</style>
+
+<table class="tableclass" style="background-color: grey; width: 100%; padding-top: 100px !important;">
+	<tr>
+		<th class="tacenter title" colspan="2">{{ information.0.title }} ({{ information.0.name }})</th>
+	</tr>
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td>Zutaten:</td>
+				</tr>
+				<tr>
+					<td>
+						<ul>
+						{% for ingredient in ingredients %}
+							<li>{{ ingredient.amount|round(2) }} {{ingredient.uom }} {{ ingredient.ingredient }}</li>
+						{% endfor %}
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td>
+			<table>
+				<tr>
+					<td>Informationen:</td>
+				</tr>
+				<tr>
+					<td><i class="fa fa-clock-o" aria-hidden="true"></i> {{ information.0.effort or "-" }} min</td>
+				</tr>
+				<tr>
+					<td><i class="fa fa-globe" aria-hidden="true"></i> {{ information.0.origin }}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">Zubereitung</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+			{% for step in instruction %}
+				<li>{{ step.step }}</li>
+			{% endfor %}
+			</ul>
+		</td>
+	</tr>
+</table>

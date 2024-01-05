@@ -5,7 +5,11 @@
 }
 
 .title {
+	font-size: 25px;
+}
+.minititle {
 	font-size: 20px;
+	padding-bottom: 5px !important;
 }
 
 .tacenter {
@@ -14,15 +18,15 @@
 	
 </style>
 
-<table class="tableclass" style="background-color: grey; width: 100%; padding-top: 100px !important;">
+<table class="tableclass" style="background-color: grey; width: 100%;">
 	<tr>
-		<th class="tacenter title" colspan="2">{{ information.0.title }} ({{ information.0.name }})</th>
+		<th class="tacenter title" colspan="2" style="padding-top: 20px !important; padding-bottom: 20px !important;">{{ information.0.title }} ({{ information.0.name }})</th>
 	</tr>
 	<tr>
-		<td>
+		<td style="width: 70%; padding-left: 30px !important; vertical-align: top;">
 			<table>
 				<tr>
-					<td>Zutaten:</td>
+					<td class="minititle">Zutaten:</td>
 				</tr>
 				<tr>
 					<td>
@@ -35,22 +39,53 @@
 				</tr>
 			</table>
 		</td>
-		<td>
+		<td style="width: 30%; vertical-align: top;">
 			<table>
 				<tr>
-					<td>Informationen:</td>
+					<td class="minititle">Informationen:</td>
 				</tr>
 				<tr>
-					<td><i class="fa fa-clock-o" aria-hidden="true"></i> {{ information.0.effort or "-" }} min</td>
+					<td><i class="fa fa-user" aria-hidden="true" style="width: 15px;"></i></td>
+					<td style="">{{ information.0.owner }}</td>
 				</tr>
 				<tr>
-					<td><i class="fa fa-globe" aria-hidden="true"></i> {{ information.0.origin }}</td>
+					<td><i class="fa fa-clock-o" aria-hidden="true"></i></td>
+					<td>{{ information.0.effort or "-" }} min</td>
 				</tr>
+				<tr>
+					<td><i class="fa fa-globe" aria-hidden="true"></i></td>
+					<td>{{ information.0.origin }}</td>
+				</tr>
+				<tr>
+					<td><i class="fa fa-cubes" aria-hidden="true"></i></td>
+					<td>{{ information.0.ingredients_qty }}</td>
+				</tr>
+				{% if information.0.vegetarian == 1 %}
+				<tr>
+					<td><i class="fa fa-info" aria-hidden="true"></i></td>
+					<td>Vegetarisch</td>
+				</tr>
+				{% elif information.0.vegan == 1 %}
+				<tr>
+					<td><i class="fa fa-info" aria-hidden="true"></i></td>
+					<td>Vegan</td>
+				</tr>
+				{% elif information.0.lactose == 1 %}
+				<tr>
+					<td><i class="fa fa-info" aria-hidden="true"></i></td>
+					<td>Laktosefrei</td>
+				</tr>
+				{% elif information.0.gluten == 1 %}
+				<tr>
+					<td><i class="fa fa-info" aria-hidden="true"></i>
+					<td>Glutenfrei</td>
+				</tr>
+				{% endif %}
 			</table>
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2">Zubereitung</td>
+		<td class="minititle" colspan="2">Zubereitung</td>
 	</tr>
 	<tr>
 		<td>

@@ -1,6 +1,6 @@
 {
- "autoname": ".#####",
- "creation": "2023-10-26 20:41:04.721649",
+ "autoname": "field:title",
+ "creation": "2024-01-07 10:38:01.889661",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -8,55 +8,33 @@
   "title",
   "column_break_2",
   "typ",
-  "information",
+  "section_break_4",
   "persons_qty",
   "effort",
   "ingredients_qty",
-  "column_break_4",
+  "column_break_8",
   "vegetarian",
   "vegan",
   "lactose",
   "gluten",
   "origin",
   "region",
-  "section_break_12",
+  "section_break_14",
   "ingredients",
   "instruction",
   "hints"
  ],
  "fields": [
   {
-   "fieldname": "title",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Titel",
-   "reqd": 1
-  },
-  {
-   "fieldname": "information",
-   "fieldtype": "Section Break",
-   "label": "Informationen"
-  },
-  {
    "fieldname": "effort",
    "fieldtype": "Int",
    "label": "Aufwand (min.)"
-  },
-  {
-   "fieldname": "column_break_4",
-   "fieldtype": "Column Break"
   },
   {
    "default": "0",
    "fieldname": "vegetarian",
    "fieldtype": "Check",
    "label": "Vegetarisch"
-  },
-  {
-   "default": "0",
-   "fieldname": "vegan",
-   "fieldtype": "Check",
-   "label": "Vegan"
   },
   {
    "fieldname": "origin",
@@ -88,10 +66,6 @@
    "fieldtype": "Int",
    "label": "Anzahl Zutaten",
    "read_only": 1
-  },
-  {
-   "fieldname": "section_break_12",
-   "fieldtype": "Section Break"
   },
   {
    "fetch_from": "Rezept.uom",
@@ -127,11 +101,36 @@
    "fieldname": "typ",
    "fieldtype": "Select",
    "label": "Typ",
-   "options": "Bitte Typ angeben...\nKochen\nBacken\nDrink",
-   "reqd": 1
+   "options": "Bitte Typ angeben...\nKochen\nBacken\nDrink"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_14",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "vegan",
+   "fieldtype": "Check",
+   "label": "Vegan"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Titel",
+   "reqd": 1,
+   "unique": 1
   }
  ],
- "modified": "2024-01-02 10:18:02.826890",
+ "modified": "2024-01-07 10:55:19.490000",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Rezept",
@@ -151,6 +150,7 @@
    "write": 1
   }
  ],
+ "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1

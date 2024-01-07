@@ -11,9 +11,14 @@ def get_data():
 					"name": "Rezept",
 				},
 				{
+					"type": "page",
+					"name": "rezept_kochen",
+					"label": "Rezept Kochen"
+				},
+				{
 					"type": "doctype",
 					"name": "Zutaten",
-				}
+				},
 			]
 		},
 		{

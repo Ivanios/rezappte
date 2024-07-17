@@ -6,7 +6,9 @@
  "engine": "InnoDB",
  "field_order": [
   "namez",
-  "uom"
+  "uom",
+  "column_break_3",
+  "abteilung"
  ],
  "fields": [
   {
@@ -23,9 +25,20 @@
    "label": "uom",
    "options": "ml\ncl\ndl\nl\ng\nkg\nStk",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "abteilung",
+   "fieldtype": "Link",
+   "label": "Abteilung",
+   "options": "Zutat Abteilung",
+   "reqd": 1
   }
  ],
- "modified": "2023-11-12 08:03:41.348385",
+ "modified": "2024-07-17 17:51:59.772187",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Zutaten",

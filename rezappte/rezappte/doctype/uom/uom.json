@@ -1,47 +1,33 @@
 {
- "autoname": "field:namez",
- "creation": "2023-11-11 18:09:30.871660",
+ "autoname": "field:uom_name",
+ "creation": "2024-07-21 17:24:54.505976",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "namez",
-  "uom",
-  "column_break_3",
-  "abteilung"
+  "uom_name",
+  "whole_no"
  ],
  "fields": [
   {
-   "fieldname": "namez",
+   "fieldname": "uom_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Name",
    "reqd": 1,
    "unique": 1
   },
   {
-   "fieldname": "uom",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "uom",
-   "options": "uom",
-   "reqd": 1
-  },
-  {
-   "fieldname": "column_break_3",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "abteilung",
-   "fieldtype": "Link",
-   "label": "Abteilung",
-   "options": "Zutat Abteilung",
-   "reqd": 1
+   "default": "0",
+   "fieldname": "whole_no",
+   "fieldtype": "Check",
+   "label": "Must be whole number"
   }
  ],
- "modified": "2024-07-21 17:26:59.479676",
+ "modified": "2024-07-21 17:25:30.159149",
  "modified_by": "Administrator",
  "module": "Rezappte",
- "name": "Zutaten",
+ "name": "uom",
  "owner": "Administrator",
  "permissions": [
   {

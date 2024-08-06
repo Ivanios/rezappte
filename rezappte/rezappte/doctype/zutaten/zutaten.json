@@ -8,7 +8,9 @@
   "namez",
   "uom",
   "column_break_3",
-  "abteilung"
+  "abteilung",
+  "conversion_section",
+  "conversions"
  ],
  "fields": [
   {
@@ -36,9 +38,20 @@
    "label": "Abteilung",
    "options": "Zutat Abteilung",
    "reqd": 1
+  },
+  {
+   "fieldname": "conversion_section",
+   "fieldtype": "Section Break",
+   "label": "Conversion Table"
+  },
+  {
+   "fieldname": "conversions",
+   "fieldtype": "Table",
+   "label": "Conversions",
+   "options": "UOM Conversion"
   }
  ],
- "modified": "2024-07-21 17:26:59.479676",
+ "modified": "2024-08-06 21:48:53.381291",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Zutaten",

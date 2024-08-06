@@ -1,0 +1,38 @@
+{
+ "creation": "2024-08-06 21:44:54.200111",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "conversion_uom",
+  "conversion_factor"
+ ],
+ "fields": [
+  {
+   "fieldname": "conversion_uom",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Conversion UOM",
+   "options": "uom",
+   "reqd": 1
+  },
+  {
+   "fieldname": "conversion_factor",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Conversion factor",
+   "reqd": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2024-08-06 21:51:28.559110",
+ "modified_by": "Administrator",
+ "module": "Rezappte",
+ "name": "UOM Conversion",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

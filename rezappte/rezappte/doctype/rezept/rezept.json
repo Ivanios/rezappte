@@ -1,4 +1,6 @@
 {
+ "allow_import": 1,
+ "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2024-01-07 10:38:01.889661",
  "doctype": "DocType",
@@ -140,7 +142,7 @@
    "reqd": 1
   }
  ],
- "modified": "2024-08-09 21:38:13.882187",
+ "modified": "2024-08-09 21:45:50.251828",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Rezept",

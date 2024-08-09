@@ -39,11 +39,12 @@
   },
   {
    "fieldname": "origin",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Herkunft",
-   "options": "Schweiz\n\u00d6sterreich\nDeutschland\nItalien\nFrankreich\nChina\nThailand\nJapan\nVietnam"
+   "options": "Origin"
   },
   {
+   "fetch_from": "origin.region",
    "fieldname": "region",
    "fieldtype": "Data",
    "label": "Region",
@@ -139,7 +140,7 @@
    "reqd": 1
   }
  ],
- "modified": "2024-08-06 21:42:24.999264",
+ "modified": "2024-08-09 21:38:13.882187",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Rezept",

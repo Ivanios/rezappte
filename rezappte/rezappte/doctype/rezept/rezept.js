@@ -4,11 +4,7 @@
 frappe.ui.form.on('Rezept', {
     validate: function(frm) {
 		cur_frm.set_value("ingredients_qty", cur_frm.doc.ingredients.length);
-		autocomplete_region(frm);
 	},
-    origin: function(frm) {
-        autocomplete_region(frm);
-    },
     typ: function(frm) {
 		set_naming_series(frm);
 	}
@@ -20,17 +16,6 @@ frappe.ui.form.on('Rezept Zutaten', {
         set_uom_options(row.ingredient);
     }
 });
-
-
-function autocomplete_region() {
-	let asiatisch = ["Thailand", "Vietnam", "China", "Japan"];
-	let europäisch = ["Italien", "Frankreich", "Österreich", "Schweiz", "Deutschland"];
-    if (asiatisch.includes(cur_frm.doc.origin)) {
-        cur_frm.set_value("region", "Asiatisch");
-    } else if (europäisch.includes(cur_frm.doc.origin)) {
-		cur_frm.set_value("region", "Europäisch");
-    }
-}
 
 function set_naming_series(frm) {
 	if (frm.doc.typ == "Kochen") {

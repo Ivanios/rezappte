@@ -2,6 +2,11 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Rezept', {
+    refresh: function(frm) {
+        frm.add_custom_button(__("Postiliste"),  function(){
+          create_recipe_shopping_list(frm);
+        });
+    },
     validate: function(frm) {
 		cur_frm.set_value("ingredients_qty", cur_frm.doc.ingredients.length);
 	},
@@ -46,9 +51,22 @@ function set_uom_options(ingredient) {
 				}
 			}
 			var options_string = options.join("\n");
-			console.log(options_string);
 			cur_frm.get_field("ingredients").grid.docfields[2].options = options_string;
 			cur_frm.refresh_field("ingredients");
+        }
+    });
+}
+
+function create_recipe_shopping_list(frm) {
+	let recipe_list = [];
+	recipe_list.push(frm.doc.name);
+    frappe.call({
+        'method': 'rezappte.rezappte.doctype.shopping_list.shopping_list.get_shopping_list_html',
+        'args': {
+            'recipe_list': recipe_list
+        },
+        'callback': function(response) {
+            console.log("Hoi Schnubbi");
         }
     });
 }

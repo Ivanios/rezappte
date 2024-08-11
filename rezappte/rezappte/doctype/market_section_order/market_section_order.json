@@ -1,0 +1,30 @@
+{
+ "creation": "2024-08-11 13:08:50.012704",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section"
+ ],
+ "fields": [
+  {
+   "fieldname": "section",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Section",
+   "options": "Zutat Abteilung",
+   "reqd": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2024-08-11 13:34:02.002317",
+ "modified_by": "Administrator",
+ "module": "Rezappte",
+ "name": "Market Section Order",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

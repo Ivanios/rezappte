@@ -3,9 +3,11 @@
 
 frappe.ui.form.on('Rezept', {
     refresh: function(frm) {
-        frm.add_custom_button(__("Postiliste herunterladen"),  function(){
-          create_recipe_shopping_list(frm);
-        });
+        if (!frm.doc.__islocal) {
+            frm.add_custom_button(__("Postiliste herunterladen"),  function(){
+              create_recipe_shopping_list(frm);
+            });
+        }
     },
     validate: function(frm) {
         cur_frm.set_value("ingredients_qty", cur_frm.doc.ingredients.length);
@@ -67,7 +69,6 @@ function create_recipe_shopping_list(frm) {
             'pdf_download': true
         },
         'callback': function(response) {
-            console.log(response.message);
             window.open(response.message.url, '_blank');
         }
     });

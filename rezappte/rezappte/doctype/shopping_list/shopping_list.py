@@ -13,12 +13,15 @@ import json
 @frappe.whitelist()
 def get_shopping_list_html(recipe_list, added_ingredients=False, pdf_download=False):
     ingredients = get_ingredients(recipe_list)
+    if added_ingredients:
+        ingredients = add_ingredients(ingredients, added_ingredients)
     calced_ingredients = calc_ingredients(ingredients)
     ordered_ingredients = order_ingredients(calced_ingredients)
     html = create_html(ordered_ingredients)
     if pdf_download:
         pdf = create_pdf(html)
         return pdf
+    frappe.log_error(html, "html")
     return html
     
 def get_ingredients(recipe_list):
@@ -99,9 +102,9 @@ def create_html(ingredients):
     html = "<div>"
     for key, value in ingredients.items():
         if value:
-            html += "<h3>Abteilung {0}:</h3><br>".format(key)
+            html += "<b>{0}:</b>".format(key)
             for ingredient in value:
-                html += "<p>-{0} {1} {2}</p>".format(ingredient.get('amount'), ingredient.get('uom'), ingredient.get('ingredient'))
+                html += "<p style='padding: None !important;'>-{0} {1} {2}</p>".format(ingredient.get('amount'), ingredient.get('uom'), ingredient.get('ingredient'))
     html += "</div>"
     return html
     
@@ -126,3 +129,19 @@ def create_pdf(html):
     
     return {'url': _file.file_url, 'name': _file.name}
 
+def add_ingredients(ingredients, shoppping_list_name):
+    ingredients_to_add = frappe.db.sql("""
+                                        SELECT
+                                            `tabEinkaufsliste Additional Ingredients`.`additional_ingredient` AS `ingredient`,
+                                            `tabEinkaufsliste Additional Ingredients`.`additional_amount` AS `amount`,
+                                            `tabEinkaufsliste Additional Ingredients`.`additional_uom` AS `uom`,
+                                            `tabZutaten`.`abteilung`
+                                        FROM
+                                            `tabEinkaufsliste Additional Ingredients`
+                                        LEFT JOIN
+                                            `tabZutaten` ON `tabEinkaufsliste Additional Ingredients`.`additional_ingredient` = `tabZutaten`.`name`
+                                        WHERE
+                                            `tabEinkaufsliste Additional Ingredients`.`parent` = '{shopping_list}'""".format(shopping_list=shoppping_list_name), as_dict=True)
+    for ingredient in ingredients_to_add:
+        ingredients.append(ingredient)
+    return ingredients

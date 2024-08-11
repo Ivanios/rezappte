@@ -1,35 +1,35 @@
 {
- "creation": "2024-08-06 21:44:54.200111",
+ "creation": "2024-08-11 15:15:17.174477",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "conversion_uom",
-  "conversion_factor"
+  "recipe",
+  "recipe_name"
  ],
  "fields": [
   {
-   "fieldname": "conversion_uom",
+   "fieldname": "recipe",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Conversion UOM",
-   "options": "uom",
+   "label": "Rezept",
+   "options": "Rezept",
    "reqd": 1
   },
   {
-   "fieldname": "conversion_factor",
-   "fieldtype": "Float",
+   "fetch_from": "recipe.title",
+   "fieldname": "recipe_name",
+   "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Conversion factor",
-   "precision": "3",
-   "reqd": 1
+   "label": "Rezept Name",
+   "read_only": 1
   }
  ],
  "istable": 1,
- "modified": "2024-08-10 23:33:42.350471",
+ "modified": "2024-08-11 15:22:45.791854",
  "modified_by": "Administrator",
  "module": "Rezappte",
- "name": "UOM Conversion",
+ "name": "Einkaufsliste Rezept",
  "owner": "Administrator",
  "permissions": [],
  "quick_entry": 1,

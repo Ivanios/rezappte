@@ -1,21 +1,63 @@
 {
+ "autoname": "naming_series:",
  "creation": "2023-10-26 21:05:22.408436",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "titel"
+  "naming_series",
+  "shopping_list_name",
+  "column_break_2",
+  "keep_list",
+  "recipe_section",
+  "recipes",
+  "additional_ingredients"
  ],
  "fields": [
   {
-   "fieldname": "titel",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "EL-.####.",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "keep_list",
+   "fieldtype": "Check",
+   "label": "Ich m\u00f6chte diese Liste behalten"
+  },
+  {
+   "fieldname": "recipe_section",
+   "fieldtype": "Section Break",
+   "label": "Rezepte und Zutaten"
+  },
+  {
+   "fieldname": "recipes",
+   "fieldtype": "Table",
+   "label": "Rezepte",
+   "options": "Einkaufsliste Rezept"
+  },
+  {
+   "fieldname": "additional_ingredients",
+   "fieldtype": "Table",
+   "label": "Zus\u00e4tzliche Zutaten",
+   "options": "Einkaufsliste Additional Ingredients"
+  },
+  {
+   "depends_on": "eval: doc.keep_list == 1;",
+   "fieldname": "shopping_list_name",
    "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Titel",
-   "reqd": 1
+   "in_standard_filter": 1,
+   "label": "Name"
   }
  ],
- "modified": "2023-10-26 21:05:22.408436",
+ "modified": "2024-08-11 21:05:57.152221",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Einkaufsliste",

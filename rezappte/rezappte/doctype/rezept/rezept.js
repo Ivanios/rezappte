@@ -60,6 +60,19 @@ function set_uom_options(ingredient) {
 }
 
 function create_recipe_shopping_list(frm) {
+	frappe.prompt([
+		{'fieldname': 'persons', 'fieldtype': 'Int', 'label': 'Anzahl Personen', 'reqd': 1}  
+	],
+	function(values){
+		create_recipe_shopping_html(frm, values.persons);
+	},
+	'Für wieviele Personen möchtest du kochen?',
+	'Postiliste!'
+	)
+}
+
+function create_recipe_shopping_html(frm, persons) {
+	console.log(persons);
     let recipe_list = [];
     recipe_list.push(frm.doc.name);
     frappe.call({

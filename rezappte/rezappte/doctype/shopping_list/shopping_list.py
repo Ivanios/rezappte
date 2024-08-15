@@ -11,8 +11,9 @@ import json
     # ~ pass
 
 @frappe.whitelist()
-def get_shopping_list_html(recipe_list, added_ingredients=False, pdf_download=False):
-    ingredients = get_ingredients(recipe_list)
+def get_shopping_list_html(recipe_list, persons, added_ingredients=False, pdf_download=False):
+    raw_ingredients = get_ingredients(recipe_list)
+    ingredients = add_persons_to_ingredients(raw_ingredients, persons)
     if added_ingredients:
         ingredients = add_ingredients(ingredients, added_ingredients)
     calced_ingredients = calc_ingredients(ingredients)
@@ -39,6 +40,7 @@ def get_ingredients(recipe_list):
                                     `tabRezept Zutaten`.`ingredient`,
                                     `tabRezept Zutaten`.`amount`,
                                     `tabRezept Zutaten`.`uom`,
+                                    `tabRezept`.`persons_qty`,
                                     `tabZutaten`.`abteilung`
                                 FROM
                                     `tabRezept Zutaten`
@@ -48,6 +50,14 @@ def get_ingredients(recipe_list):
                                     `tabZutaten` ON `tabRezept Zutaten`.`ingredient` = `tabZutaten`.`name`
                                 WHERE
                                     `tabRezept`.`name` IN ({})""".format(formatted_recipe_list), as_dict=True)
+    return ingredients
+    
+def add_persons_to_ingredients(raw_ingredients, persons):
+    ingredients = []
+    for raw_ingredient in raw_ingredients:
+        if raw_ingredient.get('persons_qty') != int(persons):
+            raw_ingredient['amount'] = raw_ingredient.get('amount') / raw_ingredient.get('persons_qty') * int(persons)
+        ingredients.append(raw_ingredient)
     return ingredients
     
 def calc_ingredients(ingredients):
@@ -145,3 +155,17 @@ def add_ingredients(ingredients, shoppping_list_name):
     for ingredient in ingredients_to_add:
         ingredients.append(ingredient)
     return ingredients
+
+def delete_shopping_lists():
+    shopping_lists = frappe.db.sql("""
+                                    SELECT
+                                        `name`
+                                    FROM
+                                        `tabEinkaufsliste`
+                                    WHERE
+                                        `keep_list` = 0""", as_dict=True)
+    if len(shopping_lists) > 0:
+        for shopping_list in shopping_lists:
+            frappe.delete_doc("Einkaufsliste", shopping_list.get('name'))
+            
+    return

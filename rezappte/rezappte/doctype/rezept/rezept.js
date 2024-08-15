@@ -64,21 +64,21 @@ function create_recipe_shopping_list(frm) {
 		{'fieldname': 'persons', 'fieldtype': 'Int', 'label': 'Anzahl Personen', 'reqd': 1}  
 	],
 	function(values){
-		create_recipe_shopping_html(frm, values.persons);
+		create_recipe_shopping_html(frm.doc.name, values.persons);
 	},
 	'Für wieviele Personen möchtest du kochen?',
 	'Postiliste!'
 	)
 }
 
-function create_recipe_shopping_html(frm, persons) {
-	console.log(persons);
+function create_recipe_shopping_html(recipe_name, persons) {
     let recipe_list = [];
-    recipe_list.push(frm.doc.name);
+    recipe_list.push(recipe_name);
     frappe.call({
         'method': 'rezappte.rezappte.doctype.shopping_list.shopping_list.get_shopping_list_html',
         'args': {
             'recipe_list': recipe_list,
+            'persons': persons,
             'pdf_download': true
         },
         'callback': function(response) {

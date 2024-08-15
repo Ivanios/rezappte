@@ -15,10 +15,6 @@ def get_data():
 					"name": "rezept_kochen",
 					"label": "Rezept Kochen"
 				},
-				{
-					"type": "doctype",
-					"name": "Zutaten",
-				},
 			]
 		},
 		{
@@ -28,6 +24,27 @@ def get_data():
 					"type": "doctype",
 					"name": "Einkaufsliste",
 				}
+			]
+		},
+        {
+			"label": _("Daten"),
+			"items": [
+				{
+					"type": "doctype",
+					"name": "Zutaten",
+				},
+                {
+					"type": "doctype",
+					"name": "uom",
+				},
+                {
+					"type": "doctype",
+					"name": "Origin",
+				},
+				{
+					"type": "doctype",
+					"name": "Market",
+				},
 			]
 		},
 	]

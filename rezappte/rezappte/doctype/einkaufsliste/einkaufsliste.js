@@ -9,6 +9,11 @@ frappe.ui.form.on('Einkaufsliste', {
             });
         }
     },
+    //~ persons: function(frm) {
+        //~ if (frm.doc.same_persons) {
+            //~ set_persons_in_recipes(frm);
+        //~ }
+    //~ },
     keep_list: function(frm) {
         console.log(frm.doc.keep_list);
         if (frm.doc.keep_list) {
@@ -18,6 +23,15 @@ frappe.ui.form.on('Einkaufsliste', {
         }
     }
 });
+
+//~ frappe.ui.form.on('Einkaufsliste Rezept', {
+    //~ recipes_add(frm, cdt, cdn) {
+        //~ var row = locals[cdt][cdn];
+        //~ if (frm.doc.same_persons) {
+            //~ frappe.model.set_value(cdt, cdn, "persons", frm.doc.persons);
+        //~ }
+    //~ }
+//~ });
 
 frappe.ui.form.on('Einkaufsliste Additional Ingredients', {
     additional_ingredient(frm, cdt, cdn) {
@@ -57,11 +71,16 @@ function create_shopping_list(frm) {
     for (let i = 0; i < frm.doc.recipes.length; i++) {
         recipe_list.push(frm.doc.recipes[i].recipe);
     }
+    let added_ingredients = false
+    if (frm.doc.additional_ingredients) {
+        added_ingredients = frm.doc.name;
+    }
     frappe.call({
         'method': 'rezappte.rezappte.doctype.shopping_list.shopping_list.get_shopping_list_html',
         'args': {
             'recipe_list': recipe_list,
-            'added_ingredients': frm.doc.name,
+            'persons': frm.doc.persons,
+            'added_ingredients': added_ingredients,
             'pdf_download': true
         },
         'callback': function(response) {
@@ -70,3 +89,9 @@ function create_shopping_list(frm) {
         }
     });
 }
+
+//~ function set_persons_in_recipes(frm) {
+    //~ for (let i = 0; i < frm.doc.recipes.length; i++) {
+        //~ frappe.model.set_value(cur_frm.doc.recipes[i].doctype, cur_frm.doc.recipes[i].name, "persons", frm.doc.persons);
+    //~ }
+//~ }

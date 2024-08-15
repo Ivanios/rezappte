@@ -96,23 +96,11 @@ website_route_rules = [
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"rezappte.tasks.all"
-# 	],
-# 	"daily": [
-# 		"rezappte.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"rezappte.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"rezappte.tasks.weekly"
-# 	]
-# 	"monthly": [
-# 		"rezappte.tasks.monthly"
-# 	]
-# }
+scheduler_events = {
+    "daily": [
+        "rezappte.rezappte.doctype.shopping_list.shopping_list.delete_shopping_lists"
+    ]
+}
 
 # Testing
 # -------

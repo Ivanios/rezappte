@@ -5,7 +5,7 @@
 from __future__ import unicode_literals
 import frappe
 import json
-# ~ from frappe.model.document import Document
+from frappe.model.document import Document
 
 # ~ class Shopping List(Document):
     # ~ pass
@@ -26,7 +26,8 @@ def get_shopping_list_html(recipe_list, persons, added_ingredients=False, pdf_do
     return html
     
 def get_ingredients(recipe_list):
-    recipe_list = json.loads(recipe_list)
+    if type(recipe_list) == "Str":
+        recipe_list = json.loads(recipe_list)
     formatted_recipe_list = ""
     for i , recipe in enumerate(recipe_list):
         if i == 0:

@@ -48,7 +48,6 @@ function get_shopping_list_name() {
            }
        });
        if (args['shopping_list']) {
-           console.log(args['shopping_list']);
            return args['shopping_list']
        }      
     } else {

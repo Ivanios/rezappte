@@ -18,6 +18,6 @@ def get_shopping_list_template(shopping_list_name):
     if shopping_list_doc.get('additional_ingredients'):
         added_ingredients = shopping_list_doc.get('name')
     ordered_ingredients = get_shopping_list(recipe_list, shopping_list_doc.get('persons'), added_ingredients)
-    shopping_list_template = frappe.render_template("rezappte/rezappte/page/shopping_list_display/shopping_list_display.html", ordered_ingredients)
+    shopping_list_template = frappe.render_template("rezappte/rezappte/page/shopping_list_display/shopping_list_display.html", {'ingredients': ordered_ingredients})
     return shopping_list_template
     

@@ -1,24 +1,12 @@
-{% for key, value in ingredients.items() %}
-    {% if value %}
-        <b>{{ key }}</b>
-        {% for ingredient in value %}
-            <label>
-                    <input type="checkbox" id={{ loop.index }} onclick="toggleLine()"> - Hallo
-            </label>
+{% for category, ingredients in ingredients.items() %}
+    {% if ingredients %}
+        <div id={{ category }} onclick="unhide_category({{ category }}, {{ ingredients }})" style="margin-top: 2px; margin-bottom: 1px;"><b>{{ category }}</b></div>
+        {% for ingredient in ingredients %}
+            <div id="{{ ingredient.ingredient }}" style="margin: 0px">
+                <label>
+                    <input type="checkbox" id="{{ ingredient.ingredient }}_check"onclick="toggleLine({{ ingredient.ingredient }})"> - {{ ingredient.amount }} {{ ingredient.uom }} {{ ingredient.ingredient }}
+                </label>
+            </div>
         {% endfor %}
     {% endif %}
 {% endfor %}
-
-<!--
-
-<p>Hallo</p>
-    <label>
-        <input type="checkbox" id="hideLineCheckbox" onclick="toggleLine()"> - {{ ingredient.get('amount') }} {{ ingredient.get('uom') }} {{ ingredient.get('ingredient') }}
-    </label>
-    
-    ingredient.get('amount') ingredient.get('uom') ingredient.get('ingredient')
--->
-
-<!--
-{{ ingredient.get('amount') }} {{ ingredient.get('uom') }} {{ ingredient.get('ingredient') }}
--->

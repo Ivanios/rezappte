@@ -72,3 +72,24 @@ function display_shopping_list(shopping_list_name) {
 		}
 	});
 }
+
+function toggleLine(ingredient) {
+    var line = document.getElementById(ingredient.id);
+    //~ var checkbox_id = ingredient + "_check"
+    var checkbox = document.getElementById(ingredient.id + "_check");
+
+    if (checkbox.checked) {
+        line.style.display = "none";
+    } else {
+        line.style.display = "block";
+    }
+    return false
+}
+
+function unhide_category(category, ingredients) {
+    for (let i  = 0; i < ingredients.length; i++) {
+        let line = document.getElementById(ingredients[i].ingredient);
+        line.style.display = "block";
+    }
+    return false
+}

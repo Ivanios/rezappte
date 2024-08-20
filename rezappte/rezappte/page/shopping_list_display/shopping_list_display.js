@@ -16,7 +16,7 @@ frappe.pages['shopping-list-display'].on_page_load = function(wrapper) {
     
     // Button to run the Rezept
     page.set_primary_action( __('Stand speichern'), () => {
-        get_choice();
+        frappe.msgprint("Oops, Funktion leider noch nicht verfügbar :-(", "Sorry!")
     });
 }
 

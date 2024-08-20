@@ -1,0 +1,12 @@
+{% for category, ingredients in ingredients.items() %}
+    {% if ingredients %}
+        <div id={{ category }} onclick="unhide_category({{ category }}, {{ ingredients }})" style="margin-top: 2px; margin-bottom: 1px;"><b>{{ category }}</b></div>
+        {% for ingredient in ingredients %}
+            <div id="{{ ingredient.ingredient }}" style="margin: 0px">
+                <label>
+                    <input type="checkbox" id="{{ ingredient.ingredient }}_check"onclick="toggleLine({{ ingredient.ingredient }})"> - {{ ingredient.amount }} {{ ingredient.uom }} {{ ingredient.ingredient }}
+                </label>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endfor %}

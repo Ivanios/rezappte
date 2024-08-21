@@ -92,9 +92,20 @@ def convert_uom(ingredient, amount, uom):
     return ingredient, real_amount, main_uom
     
 def order_ingredients(ingredients):
+    #get User Card
+    user_card = frappe.get_doc("User Card", frappe.session.user)
+    
     #get needed Market
-    market = "Migros Sonnenhof"
+    market = user_card.favorite_market
     market_doc = frappe.get_doc("Market", market)
+    frappe.log_error(market, "market")
+    
+    #create list of ingredients at home
+    ingredients_at_home = []
+    if user_card.ingredients_at_home:
+        for ingredient in user_card.ingredients_at_home:
+            ingredients_at_home.append(ingredient.home_ingredient)
+    frappe.log_error(ingredients_at_home, "ingredients_at_home")
     
     #create dict with empty list for each section
     ordered_ingredients = {}
@@ -103,11 +114,13 @@ def order_ingredients(ingredients):
     
     #loopt through all ingredients and append it to the list of respective section
     for ingredient in ingredients:
-        ordered_ingredients[ingredient.get('abteilung')].append({
-                                                                    'ingredient': ingredient.get('ingredient'),
-                                                                    'amount': ingredient.get('amount'),
-                                                                    'uom': ingredient.get('uom')
-                                                                })
+        if ingredient.get('ingredient') not in ingredients_at_home:
+            frappe.log_error(ingredient.get('ingredient'), "ingredient.get('ingredient')")
+            ordered_ingredients[ingredient.get('abteilung')].append({
+                                                                        'ingredient': ingredient.get('ingredient'),
+                                                                        'amount': ingredient.get('amount'),
+                                                                        'uom': ingredient.get('uom')
+                                                                    })
     
     return ordered_ingredients
     

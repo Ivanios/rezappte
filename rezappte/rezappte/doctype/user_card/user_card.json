@@ -1,0 +1,81 @@
+{
+ "autoname": "field:user",
+ "creation": "2024-08-21 20:45:14.454647",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "user",
+  "favorite_market",
+  "ingredients_at_home_section",
+  "ingredients_at_home"
+ ],
+ "fields": [
+  {
+   "fieldname": "favorite_market",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Favorite Market",
+   "options": "Market",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ingredients_at_home_section",
+   "fieldtype": "Section Break",
+   "label": "Ingredients at Home"
+  },
+  {
+   "description": "These ingredients will not appear in your shopping lists.",
+   "fieldname": "ingredients_at_home",
+   "fieldtype": "Table",
+   "label": "Ingredients",
+   "options": "Ingredients At Home"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "User",
+   "options": "User",
+   "reqd": 1,
+   "set_only_once": 1,
+   "unique": 1
+  }
+ ],
+ "modified": "2024-08-21 21:02:03.284737",
+ "modified_by": "Administrator",
+ "module": "Rezappte",
+ "name": "User Card",
+ "name_case": "Title Case",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rezappte User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "user",
+ "track_changes": 1
+}

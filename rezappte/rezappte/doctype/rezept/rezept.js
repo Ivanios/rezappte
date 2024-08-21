@@ -4,6 +4,7 @@
 frappe.ui.form.on('Rezept', {
     refresh: function(frm) {
         if (!frm.doc.__islocal) {
+            cur_frm.set_df_property('typ', 'read_only', 1);
             frm.add_custom_button(__("Postiliste herunterladen"),  function(){
               create_recipe_shopping_list(frm);
             });
@@ -14,6 +15,9 @@ frappe.ui.form.on('Rezept', {
     },
     typ: function(frm) {
         set_naming_series(frm);
+    },
+    vegan: function(frm) {
+        set_vegan_information(frm);
     }
 });
 
@@ -85,5 +89,12 @@ function create_recipe_shopping_html(recipe_name, persons) {
             window.open(response.message.url, '_blank');
         }
     });
+}
+
+function set_vegan_information(frm) {
+    if (frm.doc.vegan) {
+        cur_frm.set_value("vegetarian", 1);
+        cur_frm.set_value("lactose", 1);
+    }
 }
 

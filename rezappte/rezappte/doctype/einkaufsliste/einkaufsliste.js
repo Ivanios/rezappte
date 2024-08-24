@@ -72,19 +72,18 @@ function set_additional_uom_options(ingredient) {
 }
 
 function download_shopping_list(frm) {
-    let recipe_list = [];
-    for (let i = 0; i < frm.doc.recipes.length; i++) {
-        recipe_list.push(frm.doc.recipes[i].recipe);
-    }
+    //~ let recipe_list = [];
+    //~ for (let i = 0; i < frm.doc.recipes.length; i++) {
+        //~ recipe_list.push(frm.doc.recipes[i].recipe);
+    //~ }
     let added_ingredients = false
     if (frm.doc.additional_ingredients) {
         added_ingredients = frm.doc.name;
     }
-    console.log(recipe_list);
     frappe.call({
-        'method': 'rezappte.rezappte.doctype.einkaufsliste.einkaufsliste.get_shopping_list_wrapper',
+        'method': 'rezappte.rezappte.doctype.einkaufsliste.einkaufsliste.get_shopping_list',
         'args': {
-            'recipe_list': recipe_list,
+            'shopping_list_name': frm.doc.name,
             'persons': frm.doc.persons,
             'added_ingredients': added_ingredients,
             'pdf_download': true

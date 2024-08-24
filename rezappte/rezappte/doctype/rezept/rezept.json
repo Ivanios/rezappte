@@ -11,6 +11,7 @@
   "title",
   "column_break_2",
   "typ",
+  "category",
   "section_break_4",
   "persons_qty",
   "effort",
@@ -141,9 +142,16 @@
    "options": "K-.####.\nB-.####.\nD.####.",
    "read_only": 1,
    "reqd": 1
+  },
+  {
+   "depends_on": "eval: doc.typ == \"Kochen\";",
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "label": "Kategorie",
+   "options": "Rezept Kategorie"
   }
  ],
- "modified": "2024-08-11 21:42:48.887824",
+ "modified": "2024-08-24 21:52:59.719381",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Rezept",

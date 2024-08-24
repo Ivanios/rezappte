@@ -4,9 +4,11 @@
 frappe.ui.form.on('Rezept', {
     refresh: function(frm) {
         if (!frm.doc.__islocal) {
-            cur_frm.set_df_property('typ', 'read_only', 1);
-            frm.add_custom_button(__("Postiliste herunterladen"),  function(){
-              create_recipe_shopping_list(frm);
+            frm.add_custom_button(__("Postiliste erstellen"),  function(){
+              create_shopping_list(frm);
+            }).css({
+                'background-color': 'orange',
+                'color': '#ffffff'
             });
         }
     },
@@ -63,30 +65,17 @@ function set_uom_options(ingredient) {
     });
 }
 
-function create_recipe_shopping_list(frm) {
-	frappe.prompt([
-		{'fieldname': 'persons', 'fieldtype': 'Int', 'label': 'Anzahl Personen', 'reqd': 1}  
-	],
-	function(values){
-		create_recipe_shopping_html(frm.doc.name, values.persons);
-	},
-	'Für wieviele Personen möchtest du kochen?',
-	'Postiliste!'
-	)
-}
-
-function create_recipe_shopping_html(recipe_name, persons) {
-    let recipe_list = [];
-    recipe_list.push(recipe_name);
+function create_shopping_list(frm) {
     frappe.call({
-        'method': 'rezappte.rezappte.doctype.shopping_list.shopping_list.get_shopping_list_html',
+        'method': 'rezappte.rezappte.doctype.rezept.rezept.create_shopping_list',
         'args': {
-            'recipe_list': recipe_list,
-            'persons': persons,
-            'pdf_download': true
+            'recipe': frm.doc.name,
+            'persons': frm.doc.persons_qty
         },
         'callback': function(response) {
-            window.open(response.message.url, '_blank');
+            if (response.message) {
+                window.location.href = '/desk#Form/Einkaufsliste/' + response.message;
+            }
         }
     });
 }

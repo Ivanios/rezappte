@@ -38,28 +38,21 @@ def calculate_ingredients(parent_name):
 
 	return
 
-# ~ def data():
-	    # ~ matching_projects = frappe.db.sql("""
-        # ~ SELECT 
-            # ~ `name`, 
-            # ~ `drilling_team`, 
-            # ~ `expected_start_date`, 
-            # ~ `expected_end_date`, 
-            # ~ `start_half_day`, 
-            # ~ `end_half_day`, 
-            # ~ `object`
-        # ~ FROM `tabProject`
-        # ~ WHERE `project_type` = "External"
-          # ~ AND `status` IN ("Open", "Completed")
-          # ~ AND 
-            # ~ ((`expected_start_date` BETWEEN '{from_date}' AND '{to_date}')
-             # ~ OR (`expected_end_date` BETWEEN '{from_date}' AND '{to_date}')
-             # ~ OR (`expected_start_date` < '{from_date}' AND `expected_end_date` > '{to_date}')
-            # ~ )
-          # ~ {customer_filter}
-          # ~ {drilling_team_filter}
-        # ~ ORDER BY
-            # ~ `tabProject`.`expected_start_date` ASC;
-        # ~ """.format(from_date=from_date, to_date=to_date, customer_filter=customer_filter, drilling_team_filter=drilling_team_filter), as_dict=True)
-
-	# ~ return
+@frappe.whitelist()
+def create_shopping_list(recipe, persons):
+    frappe.log_error(recipe, "recipe")
+    frappe.log_error(persons, "persons")
+    shopping_list_doc = frappe.get_doc({
+        "doctype": "Einkaufsliste",
+        "persons": persons,
+        #Create subtable "layers"
+        "recipes": [{
+        "reference_doctype": "Einkaufsliste Rezept",
+        "recipe": recipe
+        }]
+    })
+    
+    shopping_list_doc.insert()
+    frappe.db.commit()
+    
+    return shopping_list_doc.name

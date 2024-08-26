@@ -4,7 +4,7 @@
         {% for ingredient in ingredients %}
             <div id="{{ ingredient.ingredient }}" style="margin: 0px">
                 <label>
-                    <input type="checkbox" id="{{ ingredient.ingredient }}_check"onclick="toggleLine({{ ingredient.ingredient }})"> - {{ ingredient.amount }} {{ ingredient.uom }} {{ ingredient.ingredient }}
+                    <input type="checkbox" id="{{ ingredient.ingredient }}_check" onclick="toggleLine({{ ingredient.ingredient }})"> - {{ ingredient.amount }} {{ ingredient.uom }} {{ ingredient.ingredient }}
                 </label>
             </div>
         {% endfor %}

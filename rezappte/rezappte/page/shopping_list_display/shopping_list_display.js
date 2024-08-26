@@ -74,8 +74,9 @@ function display_shopping_list(shopping_list_name) {
 }
 
 function toggleLine(ingredient) {
+    console.log(ingredient);
     var line = document.getElementById(ingredient.id);
-    //~ var checkbox_id = ingredient + "_check"
+    
     var checkbox = document.getElementById(ingredient.id + "_check");
 
     if (checkbox.checked) {

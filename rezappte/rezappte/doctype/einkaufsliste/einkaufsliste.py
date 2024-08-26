@@ -10,9 +10,18 @@ import json
 class Einkaufsliste(Document):
 	pass
     
+# ~ @frappe.whitelist()
+# ~ def get_shopping_list_wrapper(recipe_list, persons, added_ingredients=False, return_html=False, pdf_download=False):
+    # ~ _recipe_list = []
+    # ~ for recipe in recipe_list:
+        # ~ _recipe_list.append(recipe)
+    # ~ recipe_list = _recipe_list
+    # ~ pdf = get_shopping_list(recipe_list, persons, added_ingredients, pdf_download=True)
+    # ~ return pdf
+    
 @frappe.whitelist()
-def get_shopping_list(recipe_list, persons, added_ingredients=False, return_html=False, pdf_download=False):
-    raw_ingredients = get_ingredients(recipe_list)
+def get_shopping_list(shopping_list_name, persons, added_ingredients=False, return_html=False, pdf_download=False):
+    raw_ingredients = get_ingredients(shopping_list_name)
     ingredients = add_persons_to_ingredients(raw_ingredients, persons)
     if added_ingredients:
         ingredients = add_ingredients(ingredients, added_ingredients)
@@ -22,20 +31,21 @@ def get_shopping_list(recipe_list, persons, added_ingredients=False, return_html
         html = create_html(ordered_ingredients)
         return html
     if pdf_download:
+        html = create_html(ordered_ingredients)
         pdf = create_pdf(html)
         return pdf
     return ordered_ingredients
     
     
-def get_ingredients(recipe_list):
-    if type(recipe_list) == "Str":
-        recipe_list = json.loads(recipe_list)
-    formatted_recipe_list = ""
-    for i , recipe in enumerate(recipe_list):
-        if i == 0:
-            formatted_recipe_list += "'{0}'".format(recipe)
-        else:
-            formatted_recipe_list += " ,'{0}'".format(recipe)
+def get_ingredients(shopping_list_name):
+    # ~ if type(recipe_list) == "Str":
+        # ~ recipe_list = json.loads(recipe_list)
+    # ~ formatted_recipe_list = ""
+    # ~ for i , recipe in enumerate(recipe_list):
+        # ~ if i == 0:
+            # ~ formatted_recipe_list += "'{0}'".format(recipe)
+        # ~ else:
+            # ~ formatted_recipe_list += " ,'{0}'".format(recipe)
             
     
     ingredients = frappe.db.sql("""
@@ -52,7 +62,8 @@ def get_ingredients(recipe_list):
                                 LEFT JOIN
                                     `tabZutaten` ON `tabRezept Zutaten`.`ingredient` = `tabZutaten`.`name`
                                 WHERE
-                                    `tabRezept`.`name` IN ({})""".format(formatted_recipe_list), as_dict=True)
+                                    `tabRezept`.`name` IN (SELECT `recipe` FROM `tabEinkaufsliste Rezept` WHERE `parent` = '{}')""".format(shopping_list_name), as_dict=True)
+                                    # ~ `tabRezept`.`name` IN ({})""".format(formatted_recipe_list), as_dict=True)
     return ingredients
     
 def add_persons_to_ingredients(raw_ingredients, persons):
@@ -98,14 +109,12 @@ def order_ingredients(ingredients):
     #get needed Market
     market = user_card.favorite_market
     market_doc = frappe.get_doc("Market", market)
-    frappe.log_error(market, "market")
     
     #create list of ingredients at home
     ingredients_at_home = []
     if user_card.ingredients_at_home:
         for ingredient in user_card.ingredients_at_home:
             ingredients_at_home.append(ingredient.home_ingredient)
-    frappe.log_error(ingredients_at_home, "ingredients_at_home")
     
     #create dict with empty list for each section
     ordered_ingredients = {}
@@ -115,7 +124,6 @@ def order_ingredients(ingredients):
     #loopt through all ingredients and append it to the list of respective section
     for ingredient in ingredients:
         if ingredient.get('ingredient') not in ingredients_at_home:
-            frappe.log_error(ingredient.get('ingredient'), "ingredient.get('ingredient')")
             ordered_ingredients[ingredient.get('abteilung')].append({
                                                                         'ingredient': ingredient.get('ingredient'),
                                                                         'amount': ingredient.get('amount'),

@@ -89,7 +89,7 @@ function toggleLine(ingredient) {
 
 function unhide_category(category, ingredients) {
     for (let i  = 0; i < ingredients.length; i++) {
-        let line = document.getElementById(ingredients[i].ingredient);
+        let line = document.getElementById(ingredients[i].html_id);
         line.style.display = "block";
     }
     return false

@@ -6,6 +6,8 @@ from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
 import json
+import random
+import string
 
 class Einkaufsliste(Document):
 	pass
@@ -127,9 +129,10 @@ def order_ingredients(ingredients):
             ordered_ingredients[ingredient.get('abteilung')].append({
                                                                         'ingredient': ingredient.get('ingredient'),
                                                                         'amount': ingredient.get('amount'),
-                                                                        'uom': ingredient.get('uom')
+                                                                        'uom': ingredient.get('uom'),
+                                                                        'html_id': get_html_id(length=12)
                                                                     })
-    
+    frappe.log_error(ordered_ingredients, "ordered_ingredients")
     return ordered_ingredients
     
 def create_html(ingredients):
@@ -193,4 +196,7 @@ def delete_shopping_lists():
             frappe.delete_doc("Einkaufsliste", shopping_list.get('name'))
             
     return
-
+    
+def get_html_id(length=20):
+    random_string = ''.join(random.choice(string.ascii_letters) for i in range(length))
+    return random_string

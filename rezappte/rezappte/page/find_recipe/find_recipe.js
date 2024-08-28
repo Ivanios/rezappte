@@ -7,6 +7,8 @@ frappe.pages['find-recipe'].on_page_load = function(wrapper) {
     });
     
     page.main.html(frappe.render_template("find_recipe", {}));
+    
+    
 
     //~ // Erstelle die Seite
     //~ frappe.rezept_finden.make(page);
@@ -26,23 +28,48 @@ frappe.pages['find-recipe'].on_page_load = function(wrapper) {
     });
     
     $(document).ready(function() {
-        $('#page-find-recipe').css({
-            'background-color': 'red'
-        });
+    
+    $('#page-find-recipe').addClass('background-color');
+    
+    set_colors();
     });
 };
 
-//~ frappe.rezept_finden = {
-	//~ make: function(page) {
-		//~ var me = frappe.rezept_finden;
-        //~ me.page = page;
-        //~ console.log("Hallo");
-        //~ me.body = $('<div style="background-color: black;" id="container-rezept-finden"></div>').appendTo(me.page.main);
-	//~ },
-	//~ run: function() {
-		//~ console.log("run");
-	//~ },
-	//~ display: function() {
-		//~ console.log("display");
-	//~ }
-//~ }
+function set_colors() {
+    frappe.call({
+        'method': 'rezappte.rezappte.page.find_recipe.find_recipe.get_colors',
+        //~ 'args': {
+            //~ 'project': frm.doc.name,
+            //~ 'objekt': frm.doc.object
+        //~ },
+        'callback': function(response) {
+            console.log(response.message);
+            let font_color = response.message.font_color
+            let background_color = response.message.background_color
+            
+            $('.font-color').css({
+                'color': font_color,
+            });
+            
+            $('.background-color').css({
+                'background-color': background_color,
+            });
+        }
+    });
+}
+
+function show_option(div_id) {
+    var $element = $('#' + div_id); // Stelle sicher, dass elementId ein String ist
+    
+    if ($element.length > 0) { // Überprüfe, ob das Element existiert
+        if ($element.is(':visible')) {
+            // Element ist sichtbar, also verstecke es
+            $element.hide();
+        } else {
+            // Element ist versteckt, also zeige es an
+            $element.show();
+        }
+    } else {
+        console.error('Element mit ID ' + div_id + ' wurde nicht gefunden.');
+    }
+}

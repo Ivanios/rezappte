@@ -33,6 +33,7 @@ frappe.shopping_list_display = {
 		console.log("display");
         const shopping_list_name = get_shopping_list_name()
         display_shopping_list(shopping_list_name);
+        
 	}
 }
 
@@ -68,23 +69,42 @@ function display_shopping_list(shopping_list_name) {
 				var container = document.getElementById("container-shopping_list_display");
 				container.innerHTML = shopping_list_template; 
 				//~ $('body').html(recipe);
+                var acc = document.getElementsByClassName("accordion");
+                var i;
+
+                for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                    } else {
+                    panel.style.display = "block";
+                    }
+                });
+                acc[i].click();
+                } 
+
 			}
 		}
 	});
 }
 
-function toggleLine(ingredient) {
-    console.log(ingredient);
-    var line = document.getElementById(ingredient.id);
-    
-    var checkbox = document.getElementById(ingredient.id + "_check");
-
-    if (checkbox.checked) {
-        line.style.display = "none";
-    } else {
-        line.style.display = "block";
+function toggleLine(zutat) {
+    var category = $(zutat).attr("class");
+    var acc = document.getElementsByClassName(category);
+    var i;
+    var unchecked = false;
+    for (i = 0; i < acc.length; i++) {
+        if (!acc[i].checked) {
+            unchecked = true
+        }
+    };
+    if (!unchecked) {
+        var pacc = document.getElementsByClassName(`btn-${category}`);
+        pacc[0].click();
+        unchecked = false;
     }
-    return false
 }
 
 function unhide_category(category, ingredients) {

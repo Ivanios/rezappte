@@ -7,7 +7,7 @@
                         <label>
                             <input type="checkbox" class="{{ category }}" id="{{ ingredient.html_id }}_check" onclick="toggleLine(this)"> - {{ ingredient.amount }} {{ ingredient.uom }} {{ ingredient.ingredient }}</input> 
                         </label>
-                        <i class="fa fa-eye pull-right" data-img="{{ ingredient.image }}" data-zutat="{{ ingredient.ingredient }}" onclick="show_img(this);"></i>
+                        {% if ingredient.image %}<i class="fa fa-eye pull-right" data-img="{{ ingredient.image }}" data-zutat="{{ ingredient.ingredient }}" onclick="show_img(this);"></i>{% endif %}
                     </div>
                 {% endfor %}
         </div>

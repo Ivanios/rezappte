@@ -29,6 +29,13 @@ frappe.pages['find-recipe'].on_page_load = function(wrapper) {
     
     $(document).ready(function() {
     
+    let ingredients_qty = $("#ingredients_qty")
+    
+    ingredients_qty.on('input', function() {
+                set_ingredient_inputs($(this).val());
+            });
+
+    
     $('#page-find-recipe').addClass('background-color');
     
     set_colors();
@@ -38,12 +45,7 @@ frappe.pages['find-recipe'].on_page_load = function(wrapper) {
 function set_colors() {
     frappe.call({
         'method': 'rezappte.rezappte.page.find_recipe.find_recipe.get_colors',
-        //~ 'args': {
-            //~ 'project': frm.doc.name,
-            //~ 'objekt': frm.doc.object
-        //~ },
         'callback': function(response) {
-            console.log(response.message);
             let font_color = response.message.font_color
             let background_color = response.message.background_color
             
@@ -58,18 +60,22 @@ function set_colors() {
     });
 }
 
-function show_option(div_id) {
-    var $element = $('#' + div_id); // Stelle sicher, dass elementId ein String ist
+function toggle_option(div_id) {
+    var option = $(div_id).data("option")
+    var element = $("#" + option)
+    console.log(element);
     
-    if ($element.length > 0) { // Überprüfe, ob das Element existiert
-        if ($element.is(':visible')) {
-            // Element ist sichtbar, also verstecke es
-            $element.hide();
+    if (element.length > 0) {
+        if (element.is(':visible')) {
+            element.hide();
         } else {
-            // Element ist versteckt, also zeige es an
-            $element.show();
+            element.show();
         }
     } else {
         console.error('Element mit ID ' + div_id + ' wurde nicht gefunden.');
     }
+}
+
+function set_ingredient_inputs(qty) {
+    console.log(qty);
 }

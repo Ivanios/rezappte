@@ -56,7 +56,8 @@ def get_ingredients(shopping_list_name):
                                     `tabRezept Zutaten`.`amount`,
                                     `tabRezept Zutaten`.`uom`,
                                     `tabRezept`.`persons_qty`,
-                                    `tabZutaten`.`abteilung`
+                                    `tabZutaten`.`abteilung`,
+                                    `tabZutaten`.`image`
                                 FROM
                                     `tabRezept Zutaten`
                                 LEFT JOIN
@@ -91,7 +92,13 @@ def calc_ingredients(ingredients):
                 found_match = True
                 existing_ingredient['amount'] += real_amount
         if not found_match:
-            calced_ingredients.append({'ingredient': actual_ingredient, 'amount': real_amount or 0, 'uom': main_uom, 'abteilung': ingredient.get('abteilung')})
+            calced_ingredients.append({
+                'ingredient': actual_ingredient,
+                'amount': real_amount or 0,
+                'uom': main_uom,
+                'abteilung': ingredient.get('abteilung'),
+                'image': ingredient.get('image')
+            })
 
     return calced_ingredients
                                     
@@ -130,7 +137,8 @@ def order_ingredients(ingredients):
                                                                         'ingredient': ingredient.get('ingredient'),
                                                                         'amount': ingredient.get('amount'),
                                                                         'uom': ingredient.get('uom'),
-                                                                        'html_id': get_html_id(length=12)
+                                                                        'html_id': get_html_id(length=12),
+                                                                        'image': ingredient.get('image')
                                                                     })
     frappe.log_error(ordered_ingredients, "ordered_ingredients")
     return ordered_ingredients

@@ -114,3 +114,12 @@ function unhide_category(category, ingredients) {
     }
     return false
 }
+
+function show_img(elmt) {
+    var img = $(elmt).data("img")!='None'?`<img src="${$(elmt).data("img")}">`:"<b>Kein</b> Bild vorhanden";
+    var zutat = $(elmt).data("zutat");
+    frappe.msgprint({
+        title: `${zutat}`,
+        message: img
+    });
+}

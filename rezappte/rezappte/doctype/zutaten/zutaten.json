@@ -7,6 +7,7 @@
  "field_order": [
   "namez",
   "uom",
+  "image",
   "column_break_3",
   "abteilung",
   "conversion_section",
@@ -49,9 +50,14 @@
    "fieldtype": "Table",
    "label": "Conversions",
    "options": "UOM Conversion"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "image"
   }
  ],
- "modified": "2024-08-06 21:48:53.381291",
+ "modified": "2024-08-29 20:16:00.309508",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Zutaten",

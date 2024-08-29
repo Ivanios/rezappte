@@ -3,10 +3,11 @@
         <button class="accordion btn-{{ category }}">{{ category }}</button>
         <div class="panel">
             {% for ingredient in ingredients %}
-                    <div id="{{ ingredient.html_id }}" style="margin: 0px">
+                    <div id="{{ ingredient.html_id }}" style="margin: 0px width: 100%;">
                         <label>
-                            <input type="checkbox" class="{{ category }}" id="{{ ingredient.html_id }}_check" onclick="toggleLine(this)"> - {{ ingredient.amount }} {{ ingredient.uom }} {{ ingredient.ingredient }}
+                            <input type="checkbox" class="{{ category }}" id="{{ ingredient.html_id }}_check" onclick="toggleLine(this)"> - {{ ingredient.amount }} {{ ingredient.uom }} {{ ingredient.ingredient }}</input> 
                         </label>
+                        <i class="fa fa-eye pull-right" data-img="{{ ingredient.image }}" data-zutat="{{ ingredient.ingredient }}" onclick="show_img(this);"></i>
                     </div>
                 {% endfor %}
         </div>

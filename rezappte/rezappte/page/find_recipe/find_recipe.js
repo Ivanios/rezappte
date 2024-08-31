@@ -29,10 +29,13 @@ frappe.pages['find-recipe'].on_page_load = function(wrapper) {
     
     $(document).ready(function() {
     
+    //~ create_ingredients_link_field(page);
+    
     let ingredients_qty = $("#ingredients_qty")
     
     ingredients_qty.on('input', function() {
                 set_ingredient_inputs($(this).val());
+                create_ingredient_input_field(page);
             });
 
     
@@ -78,4 +81,20 @@ function toggle_option(div_id) {
 
 function set_ingredient_inputs(qty) {
     console.log(qty);
+}
+
+function create_ingredient_input_field(page) {
+    var ingredient_input_container = page.main.find(".ingredient_input");
+    console.log(ingredient_input_container);
+    var ingredient_input_field = frappe.ui.form.make_control({
+        parent: page.main.find(".ingredient_input"),
+        df: {
+            fieldtype: "Link",
+            fieldname: "ingredient_input",
+            options: 'Zutaten',
+            placeholder: "Zutat"
+        },
+        only_input: true,
+    });
+    return ingredient_input_field
 }

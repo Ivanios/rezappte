@@ -26,7 +26,24 @@ frappe.ui.form.on('Rezept', {
 frappe.ui.form.on('Rezept Zutaten', {
     ingredient(frm, cdt, cdn) {
         var row = locals[cdt][cdn];
-        set_uom_options(row.ingredient);
+        if (row.ingredient) {
+            set_uom_options(row.ingredient);
+        } else {
+            frappe.model.set_value(cdt, cdn, "amount", "");
+            frappe.model.set_value(cdt, cdn, "uom", "");
+        }
+    }
+});
+
+frappe.ui.form.on('Schritte', {
+    steps_ingredient(frm, cdt, cdn) {
+        var row = locals[cdt][cdn];
+        if (row.steps_ingredient) {
+            set_steps_uom_options(row.steps_ingredient);
+        } else {
+            frappe.model.set_value(cdt, cdn, "steps_amount", "");
+            frappe.model.set_value(cdt, cdn, "steps_uom", "");
+        }
     }
 });
 
@@ -85,5 +102,29 @@ function set_vegan_information(frm) {
         cur_frm.set_value("vegetarian", 1);
         cur_frm.set_value("lactose", 1);
     }
+}
+
+function set_steps_uom_options(ingredient) {
+    frappe.call({
+        'method': "frappe.client.get",
+        'args': {
+            'doctype': "Zutaten",
+            'name': ingredient
+        },
+        'callback': function(response) {
+            let main_uom = response.message.uom;
+            let conversions = response.message.conversions;
+            let options = [];
+            options.push(main_uom);
+            if (conversions) {
+                for (let i = 0; i < conversions.length; i++) {
+                    options.push(conversions[i].conversion_uom);
+                }
+            }
+            var options_string = options.join("\n");
+            cur_frm.get_field("instruction").grid.docfields[2].options = options_string;
+            cur_frm.refresh_field("instruction");
+        }
+    });
 }
 

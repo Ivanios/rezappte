@@ -9,6 +9,7 @@
  "field_order": [
   "title",
   "naming_series",
+  "image",
   "column_break_2",
   "typ",
   "category",
@@ -155,9 +156,14 @@
    "fieldname": "ingredients_from_instruction",
    "fieldtype": "Button",
    "label": "Zutaten aus Anleitung \u00fcbernehmen"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Bild"
   }
  ],
- "modified": "2024-09-01 09:36:39.934679",
+ "modified": "2024-09-01 13:12:37.339441",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Rezept",

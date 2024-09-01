@@ -5,43 +5,40 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
+import json
 
 class Rezept(Document):
-	pass
-	
+    pass
+    
 @frappe.whitelist()
 def fill_uom(ingredient):
-	frappe.log_error(ingredient, "ingredient")
-	
-	uom = frappe.db.get_value("Zutaten", {"Name": ingredient}, "uom")
-	
-	frappe.log_error(uom, "uom")
-	
+    frappe.log_error(ingredient, "ingredient")
+    
+    uom = frappe.db.get_value("Zutaten", {"Name": ingredient}, "uom")
+    
+    frappe.log_error(uom, "uom")
+    
 
-	return 7
+    return 7
 
 @frappe.whitelist()
 def calculate_ingredients(parent_name):
-	frappe.log_error(parent_name, "parent_name")
-	ing = frappe.db.sql("""
-	SELECT `name` 
-	FROM `tabRezept Zutaten`
-	WHERE `parent` = '{name}'
-	AND `alternative` = 0
-	AND `optional` = 0;
-	""".format(name=parent_name), as_list=True)
-	frappe.log_error(len(ing), "ing")
-	
-	doc = frappe.get_doc("Rezept", parent_name)
-	doc.ingredients_qty = len(ing)
-	doc.save()
+    ing = frappe.db.sql("""
+    SELECT `name` 
+    FROM `tabRezept Zutaten`
+    WHERE `parent` = '{name}'
+    AND `alternative` = 0
+    AND `optional` = 0;
+    """.format(name=parent_name), as_list=True)
+    
+    doc = frappe.get_doc("Rezept", parent_name)
+    doc.ingredients_qty = len(ing)
+    doc.save()
 
-	return
+    return
 
 @frappe.whitelist()
 def create_shopping_list(recipe, persons):
-    frappe.log_error(recipe, "recipe")
-    frappe.log_error(persons, "persons")
     shopping_list_doc = frappe.get_doc({
         "doctype": "Einkaufsliste",
         "persons": persons,
@@ -56,3 +53,22 @@ def create_shopping_list(recipe, persons):
     frappe.db.commit()
     
     return shopping_list_doc.name
+    
+@frappe.whitelist()
+def get_ingredients_from_instruction(instruction):
+    instruction = json.loads(instruction)
+    ingredients = []
+    for step in instruction:
+        found_match = False
+        for existing_ingredient in ingredients:
+            if step.get('steps_ingredient') == existing_ingredient.get('ingredient') and step.get('steps_uom') == existing_ingredient.get('uom'):
+                found_match = True
+                existing_ingredient['amount'] += int(step.get('steps_amount'))
+        if not found_match:
+            ingredients.append({
+                'ingredient': step.get('steps_ingredient'),
+                'amount': int(step.get('steps_amount')),
+                'uom': step.get('steps_uom')
+            })
+    frappe.log_error(ingredients, "ingredients")
+    return ingredients

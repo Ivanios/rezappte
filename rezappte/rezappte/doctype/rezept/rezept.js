@@ -20,6 +20,9 @@ frappe.ui.form.on('Rezept', {
     },
     vegan: function(frm) {
         set_vegan_information(frm);
+    },
+    ingredients_from_instruction: function(frm) {
+        get_ingredients_from_instruction(frm);
     }
 });
 
@@ -124,6 +127,25 @@ function set_steps_uom_options(ingredient) {
             var options_string = options.join("\n");
             cur_frm.get_field("instruction").grid.docfields[2].options = options_string;
             cur_frm.refresh_field("instruction");
+        }
+    });
+}
+
+function get_ingredients_from_instruction(frm) {
+    frappe.call({
+        'method': "rezappte.rezappte.doctype.rezept.rezept.get_ingredients_from_instruction",
+        'args': {
+            'instruction': frm.doc.instruction
+        },
+        'callback': function(response) {
+            var ingredients = response.message
+            for (var i = 0; i < ingredients.length; i++) {
+                var child = cur_frm.add_child('ingredients');
+                child.ingredient = ingredients[i].ingredient;
+                child.amount = ingredients[i].amount;
+                child.uom = ingredients[i].uom;
+                cur_frm.refresh_field("ingredients");
+            }
         }
     });
 }

@@ -34,6 +34,19 @@ frappe.ui.form.on('Rezept Zutaten', {
         } else {
             frappe.model.set_value(cdt, cdn, "amount", "");
             frappe.model.set_value(cdt, cdn, "uom", "");
+            cur_frm.get_field("ingredients").grid.docfields[2].options = "";
+            cur_frm.refresh_field("ingredients");
+        }
+    },
+    form_render(frm, cdt, cdn) {
+        var row = locals[cdt][cdn];
+        if (row.ingredient) {
+            set_uom_options(row.ingredient);
+        } else {
+            frappe.model.set_value(cdt, cdn, "amount", "");
+            frappe.model.set_value(cdt, cdn, "uom", "");
+            cur_frm.get_field("ingredients").grid.docfields[2].options = "";
+            cur_frm.refresh_field("ingredients");
         }
     }
 });
@@ -46,6 +59,20 @@ frappe.ui.form.on('Schritte', {
         } else {
             frappe.model.set_value(cdt, cdn, "steps_amount", "");
             frappe.model.set_value(cdt, cdn, "steps_uom", "");
+            cur_frm.get_field("instruction").grid.docfields[2].options = "";
+            cur_frm.refresh_field("instruction");
+        }
+    },
+    form_render(frm, cdt, cdn) {
+        console.log("Hallo");
+        var row = locals[cdt][cdn];
+        if (row.steps_ingredient) {
+            set_steps_uom_options(row.steps_ingredient);
+        } else {
+            frappe.model.set_value(cdt, cdn, "steps_amount", "");
+            frappe.model.set_value(cdt, cdn, "steps_uom", "");
+            cur_frm.get_field("instruction").grid.docfields[2].options = "";
+            cur_frm.refresh_field("instruction");
         }
     }
 });

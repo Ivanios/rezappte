@@ -64,7 +64,6 @@ frappe.ui.form.on('Schritte', {
         }
     },
     form_render(frm, cdt, cdn) {
-        console.log("Hallo");
         var row = locals[cdt][cdn];
         if (row.steps_ingredient) {
             set_steps_uom_options(row.steps_ingredient);

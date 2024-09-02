@@ -14,8 +14,7 @@
    "fieldname": "description",
    "fieldtype": "Small Text",
    "in_list_view": 1,
-   "label": "Beschreibung",
-   "reqd": 1
+   "label": "Beschreibung"
   },
   {
    "fieldname": "steps_ingredient",
@@ -35,7 +34,7 @@
   }
  ],
  "istable": 1,
- "modified": "2024-08-31 21:43:50.289493",
+ "modified": "2024-09-02 17:40:25.831934",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Schritte",

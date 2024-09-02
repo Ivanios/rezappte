@@ -1,6 +1,5 @@
 {
  "allow_import": 1,
- "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2024-01-07 10:38:01.889661",
  "doctype": "DocType",
@@ -163,11 +162,10 @@
    "label": "Bild"
   }
  ],
- "modified": "2024-09-01 13:12:37.339441",
+ "modified": "2024-09-02 16:51:52.764745",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "Rezept",
- "name_case": "Title Case",
  "owner": "Administrator",
  "permissions": [
   {
@@ -187,6 +185,6 @@
  "search_fields": "title",
  "sort_field": "modified",
  "sort_order": "DESC",
- "title_field": "typ",
+ "title_field": "title",
  "track_changes": 1
 }

@@ -94,7 +94,8 @@ function create_ingredient_input_field(page) {
             options: 'Zutaten',
             placeholder: "Zutat"
         },
-        only_input: true,
+        only_input: true
     });
-    return ingredient_input_field
+    ingredient_input_field.refresh();
+    return
 }

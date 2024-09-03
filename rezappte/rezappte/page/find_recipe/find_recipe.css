@@ -1,0 +1,29 @@
+.ingredient_input_1 {
+    width: 10%;
+}
+
+.ingredient_input_2 {
+    width: 10%;
+    display: none;
+}
+
+.ingredient_input_3 {
+    width: 10%;
+    display: none;
+}
+
+.ingredient_input_4 {
+    width: 10%;
+    display: none;
+}
+
+.ingredient_input_5 {
+    width: 10%;
+    display: none;
+}
+
+.outer-div {
+    width: 100%;
+    height: 100px;
+}
+

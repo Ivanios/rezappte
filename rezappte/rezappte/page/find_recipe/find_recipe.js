@@ -48,12 +48,26 @@ frappe.pages['find-recipe'].on_page_load = function(wrapper) {
     
     $('.ingredient_input_1').find('input').on('input', function() {
         let ingredient_1 = $(this).val();
-        //~ if (ingredient_1 && ingredient_1.trim().length > 0) {
-            search_and_show_recipe();
+            search_and_show_recipe(ingredient_1);
             $('.ingredient_input_2').show()
-        //~ } else {
-            //~ $('.ingredient_input_2').hide()
-        //~ }
+    });
+    
+    $('.ingredient_input_2').find('input').on('input', function() {
+        let ingredient_2 = $(this).val();
+            search_and_show_recipe(ingredient_2);
+            $('.ingredient_input_3').show()
+    });
+    
+    $('.ingredient_input_3').find('input').on('input', function() {
+        let ingredient_3 = $(this).val();
+            search_and_show_recipe();
+            $('.ingredient_input_4').show()
+    });
+    
+    $('.ingredient_input_4').find('input').on('input', function() {
+        let ingredient_4 = $(this).val();
+            search_and_show_recipe();
+            $('.ingredient_input_5').show()
     });
     
     set_colors();
@@ -99,7 +113,7 @@ function toggle_option(div_id) {
 //~ }
 
 function create_ingredient_input_field(page, field_no) {
-    var ingredient_input_container = page.main.find(".ingredient_input_" + field_no);
+    //~ var ingredient_input_container = page.main.find(".ingredient_input_" + field_no);
     var ingredient_input_field = frappe.ui.form.make_control({
         parent: page.main.find(".ingredient_input_" + field_no),
         df: {
@@ -123,6 +137,36 @@ ingredient_input_container.find('input').on('input', function() {
     }
 });
 
-function search_and_show_recipe() {
-    console.log("RECIPEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+function search_and_show_recipe(ingredient) {
+    let ingredients = []
+    let ingredientValue_1 = $('.ingredient_input_1').find('input').val();
+    if (ingredientValue_1) {
+        ingredients.push(ingredientValue_1)
+    }
+    let ingredientValue_2 = $('.ingredient_input_2').find('input').val();
+    if (ingredientValue_2) {
+        ingredients.push(ingredientValue_2)
+    }
+    let ingredientValue_3 = $('.ingredient_input_3').find('input').val();
+    if (ingredientValue_3) {
+        ingredients.push(ingredientValue_3)
+    }
+    let ingredientValue_4 = $('.ingredient_input_4').find('input').val();
+    if (ingredientValue_4) {
+        ingredients.push(ingredientValue_4)
+    }
+    let ingredientValue_5 = $('.ingredient_input_5').find('input').val();
+    if (ingredientValue_5) {
+        ingredients.push(ingredientValue_5)
+    }
+    console.log(ingredients);
+    frappe.call({
+        'method': 'rezappte.rezappte.page.find_recipe.find_recipe.find_recipe_by_ingredients',
+        'args': {
+            'ingredients': ingredients
+        },
+        'callback': function(response) {
+            console.log(response.message);
+        }
+    });
 }

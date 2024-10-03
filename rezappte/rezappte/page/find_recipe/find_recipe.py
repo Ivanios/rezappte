@@ -4,6 +4,7 @@
 
 import frappe
 from collections import Counter
+import json
 
 @frappe.whitelist()
 def get_colors():
@@ -18,8 +19,9 @@ def get_colors():
         
     return {'background_color': background_color, 'font_color': font_color}
     
+@frappe.whitelist()
 def find_recipe_by_ingredients(ingredients):
-    print(ingredients)
+    ingredients = json.loads(ingredients)
     # build conditions string
     conditions = " OR ".join(
         "`tabRezept Zutaten`.`ingredient` = '{0}'".format(condition.replace("'", "''")) for condition in ingredients

@@ -63,12 +63,11 @@ def get_ingredients_from_instruction(instruction):
         for existing_ingredient in ingredients:
             if step.get('steps_ingredient') == existing_ingredient.get('ingredient') and step.get('steps_uom') == existing_ingredient.get('uom'):
                 found_match = True
-                existing_ingredient['amount'] += int(step.get('steps_amount'))
+                existing_ingredient['amount'] += float(step.get('steps_amount'))
         if not found_match:
             ingredients.append({
                 'ingredient': step.get('steps_ingredient'),
-                'amount': int(step.get('steps_amount')),
+                'amount': float(step.get('steps_amount')),
                 'uom': step.get('steps_uom')
             })
-    frappe.log_error(ingredients, "ingredients")
     return ingredients

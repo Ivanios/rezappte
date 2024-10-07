@@ -166,7 +166,20 @@ function search_and_show_recipe(ingredient) {
             'ingredients': ingredients
         },
         'callback': function(response) {
-            console.log(response.message);
+            display_recipes(response.message);
         }
     });
+}
+
+function display_recipes(recipe_list) {
+    console.log(recipe_list);
+    for (let i = 0; i < recipe_list.length; i++) {
+        let $recipe = $('.recipe_' + i);
+        let $ingredients = $('.ingredients_' + i);
+        console.log(recipe_list[i].recipe);
+        $recipe.text(recipe_list[i].recipe);
+        $ingredients.text("Anzahl verwendeter Zutaten: " + recipe_list[i].count);
+        $recipe.css('display', 'block');
+        $ingredients.css('display', 'block');
+    }
 }

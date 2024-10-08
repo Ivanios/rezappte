@@ -1,30 +1,31 @@
 <div class="background-color outer-div">
     <div class="font-color title">Rezept finden</div>
-    <div class="font-color option" data-option="find_by_ingredients" onclick="toggle_option(this)"><i class="fa fa-caret-right" aria-hidden="true"></i>Mit vorhandenen Zutaten suchen</div>
-    <div id="find_by_ingredients" style="display: none">
     <div class="row">
-        <div class="font-color col-md-6 col-sm-12">
-            <p>Bitte gib die Zutaten an nach denen du suchen möchtest:</p>
-            <p class="ingredient_input_1"></p>
-            <p class="ingredient_input_2"></p>
-            <p class="ingredient_input_3"></p>
-            <p class="ingredient_input_4"></p>
-            <p class="ingredient_input_5"></p>
+        <div class="font-color col-md-7 col-sm-12">
+            <div class="font-color option normal-text" data-option="find_by_ingredients" onclick="toggle_option(this)">
+                <i class="fa fa-caret-right" aria-hidden="true"></i> Mit vorhandenen Zutaten suchen
+            </div>
+            
+            <div id="find_by_ingredients" style="display: none;">
+                <p class="normal-text">Bitte gib die Zutaten an nach denen du suchen möchtest:</p>
+                <p class="ingredient_input_1"></p>
+                <p class="ingredient_input_2"></p>
+                <p class="ingredient_input_3"></p>
+                <p class="ingredient_input_4"></p>
+                <p class="ingredient_input_5"></p>
+            </div>
         </div>
-        <div class="font-color col-md-6 col-sm-12" style="background-color: red;">
+        <div class="font-color col-md-5 col-sm-12">
             <p class="font-color recipe_0" style="display: none;"></p>
             <p class="font-color ingredients_0" style="display: none;"></p>
+            <p class="font-color recipe_1" style="display: none;"></p>
+            <p class="font-color ingredients_1" style="display: none;"></p>
+            <p class="font-color recipe_2" style="display: none;"></p>
+            <p class="font-color ingredients_2" style="display: none;"></p>
+            <p class="font-color recipe_3" style="display: none;"></p>
+            <p class="font-color ingredients_3" style="display: none;"></p>
+            <p class="font-color recipe_4" style="display: none;"></p>
+            <p class="font-color ingredients_4" style="display: none;"></p>
         </div>
     </div>
 </div>
-
-<!--
-            <p class="recipe_3"></p>
-            <p class="recipe_4"></p>
-            <p class="recipe_5"></p>
-            <p class="recipe_6"></p>
-            <p class="recipe_7"></p>
-            <p class="recipe_8"></p>
-            <p class="recipe_9"></p>
-            <p class="recipe_10"></p>
--->

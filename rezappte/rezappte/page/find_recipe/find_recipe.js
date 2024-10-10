@@ -172,13 +172,32 @@ function search_and_show_recipe(ingredient) {
 }
 
 function display_recipes(recipe_list) {
+    for (let v = 0; v < 4; v++) {
+        let $recipe = $('.recipe_' + v);
+        let $ingredients = $('.ingredients_' + v);
+        $recipe.css('display', 'none');
+        $ingredients.css('display', 'none');
+    }
     console.log(recipe_list);
     for (let i = 0; i < recipe_list.length; i++) {
         let $recipe = $('.recipe_' + i);
         let $ingredients = $('.ingredients_' + i);
-        console.log(recipe_list[i].recipe);
-        $recipe.text(recipe_list[i].recipe);
-        $ingredients.text("Anzahl verwendeter Zutaten: " + recipe_list[i].count);
+        $recipe.html(`<a href="/desk#Form/Rezept/${recipe_list[i].recipe_number}" class="font-color" target="_blank">${recipe_list[i].recipe}</a>`);
+        let ingredients_display = recipe_list[i].count + ". Zutaten benötigt: " + recipe_list[i].ingredient_1
+        if (recipe_list[i].ingredient_2) {
+            ingredients_display = ingredients_display + ", " + recipe_list[i].ingredient_2
+        }
+        if (recipe_list[i].ingredient_3) {
+            ingredients_display = ingredients_display + ", " + recipe_list[i].ingredient_3
+        }
+        if (recipe_list[i].ingredient_4) {
+            ingredients_display = ingredients_display + ", " + recipe_list[i].ingredient_4
+        }
+        if (recipe_list[i].ingredient_5) {
+            ingredients_display = ingredients_display + ", " + recipe_list[i].ingredient5
+        }
+        $ingredients.text(ingredients_display);
+        //~ $ingredients.text("Anzahl verwendeter Zutaten: " + recipe_list[i].count);
         $recipe.css('display', 'block');
         $ingredients.css('display', 'block');
     }

@@ -62,7 +62,6 @@ function set_colors() {
 function toggle_option(div_id) {
     var option = $(div_id).data("option")
     var element = $("#" + option)
-    console.log(element);
     
     if (element.length > 0) {
         if (element.is(':visible')) {
@@ -83,8 +82,7 @@ function create_ingredient_input_field(page, field_no) {
             fieldtype: "Link",
             fieldname: "ingredient_input_" + field_no,
             options: 'Zutaten',
-            placeholder: "Zutat",
-            change: console.log("Triggiiii")
+            placeholder: "Zutat"
         },
         only_input: true
     });
@@ -109,7 +107,7 @@ function create_ingredient_input_field(page, field_no) {
             // does not work
         } else {
             search_and_show_recipe()
-            $('.ingredient_input_' + field_no).hide()
+            sort_ingredient_fields();
         }
     });
 }
@@ -136,7 +134,7 @@ function search_and_show_recipe() {
     if (ingredientValue_5) {
         ingredients.push(ingredientValue_5)
     }
-    console.log(ingredients);
+
     frappe.call({
         'method': 'rezappte.rezappte.page.find_recipe.find_recipe.find_recipe_by_ingredients',
         'args': {
@@ -176,5 +174,27 @@ function display_recipes(recipe_list) {
         //~ $ingredients.text("Anzahl verwendeter Zutaten: " + recipe_list[i].count);
         $recipe.css('display', 'block');
         $ingredients.css('display', 'block');
+    }
+}
+
+function sort_ingredient_fields() {
+    for (let i = 1; i < 6; i++) {
+        let ingredient_value = $('.ingredient_input_' + i.toString() + ' input').val();
+        if (!ingredient_value) {
+            let j = i + 1
+            let next_value = $('.ingredient_input_' + j.toString() + ' input').val();
+            $('.ingredient_input_' + i.toString() + ' input').val(next_value);
+            $('.ingredient_input_' + j.toString() + ' input').val('');
+        }
+    }
+    let hide = false
+    for (let k = 1; k < 6; k++) {
+        if (hide) {
+            $('.ingredient_input_' + k.toString()).hide();
+        }
+        let ingredient_value = $('.ingredient_input_' + k.toString() + ' input').val();
+        if (!ingredient_value) {
+            hide = true
+        }
     }
 }

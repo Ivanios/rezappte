@@ -29,15 +29,6 @@ frappe.pages['find-recipe'].on_page_load = function(wrapper) {
     
     $(document).ready(function() {
     
-    //~ create_ingredients_link_field(page);
-    
-    //~ let ingredients_qty = $("#ingredients_qty")
-    
-    //~ ingredients_qty.on('input', function() {
-                //~ set_ingredient_inputs($(this).val());
-            //~ });
-
-    
     $('#page-find-recipe').addClass('background-color');
     
     create_ingredient_input_field(page, "1");
@@ -45,30 +36,6 @@ frappe.pages['find-recipe'].on_page_load = function(wrapper) {
     create_ingredient_input_field(page, "3");
     create_ingredient_input_field(page, "4");
     create_ingredient_input_field(page, "5");
-    
-    $('.ingredient_input_1').find('input').on('input', function() {
-        let ingredient_1 = $(this).val();
-            search_and_show_recipe(ingredient_1);
-            $('.ingredient_input_2').show()
-    });
-    
-    $('.ingredient_input_2').find('input').on('input', function() {
-        let ingredient_2 = $(this).val();
-            search_and_show_recipe(ingredient_2);
-            $('.ingredient_input_3').show()
-    });
-    
-    $('.ingredient_input_3').find('input').on('input', function() {
-        let ingredient_3 = $(this).val();
-            search_and_show_recipe();
-            $('.ingredient_input_4').show()
-    });
-    
-    $('.ingredient_input_4').find('input').on('input', function() {
-        let ingredient_4 = $(this).val();
-            search_and_show_recipe();
-            $('.ingredient_input_5').show()
-    });
     
     set_colors();
     });
@@ -108,10 +75,6 @@ function toggle_option(div_id) {
     }
 }
 
-//~ function set_ingredient_inputs(qty) {
-    //~ console.log(qty);
-//~ }
-
 function create_ingredient_input_field(page, field_no) {
     //~ var ingredient_input_container = page.main.find(".ingredient_input_" + field_no);
     var ingredient_input_field = frappe.ui.form.make_control({
@@ -120,24 +83,38 @@ function create_ingredient_input_field(page, field_no) {
             fieldtype: "Link",
             fieldname: "ingredient_input_" + field_no,
             options: 'Zutaten',
-            placeholder: "Zutat"
+            placeholder: "Zutat",
+            change: console.log("Triggiiii")
         },
         only_input: true
     });
     ingredient_input_field.refresh();
+    
+    ingredient_input_field.$input.on('awesomplete-selectcomplete', function() {
+        var value = ingredient_input_field.get_value();
+        if(value) {
+            search_and_show_recipe()
+            let field_no_int = parseInt(field_no) + 1
+            $('.ingredient_input_' + field_no_int.toString()).show()
+        } else {
+            search_and_show_recipe()
+            // does not work
+        }
+    });
+
+    ingredient_input_field.$input.on('change', function() {
+        var value = ingredient_input_field.get_value();
+        if(value) {
+            search_and_show_recipe()
+            // does not work
+        } else {
+            search_and_show_recipe()
+            $('.ingredient_input_' + field_no).hide()
+        }
+    });
 }
 
-ingredient_input_container.find('input').on('input', function() {
-    var enteredValue = $(this).val();
-    
-    if (enteredValue && enteredValue.trim().length > 0) {
-        console.log('Der Benutzer hat etwas eingetragen: ' + enteredValue);
-        // Hier deine Funktion aufrufen
-        deineFunktion(enteredValue);
-    }
-});
-
-function search_and_show_recipe(ingredient) {
+function search_and_show_recipe() {
     let ingredients = []
     let ingredientValue_1 = $('.ingredient_input_1').find('input').val();
     if (ingredientValue_1) {
@@ -178,7 +155,6 @@ function display_recipes(recipe_list) {
         $recipe.css('display', 'none');
         $ingredients.css('display', 'none');
     }
-    console.log(recipe_list);
     for (let i = 0; i < recipe_list.length; i++) {
         let $recipe = $('.recipe_' + i);
         let $ingredients = $('.ingredients_' + i);

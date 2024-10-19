@@ -2,58 +2,63 @@ from __future__ import unicode_literals
 from frappe import _
 
 def get_data():
-	return [
-		{
-			"label": _("Kochen"),
-			"items": [
-				{
-					"type": "doctype",
-					"name": "Rezept",
-				},
-				{
-					"type": "page",
-					"name": "rezept_kochen",
-					"label": "Rezept Kochen"
-				},
-			]
-		},
-		{
-			"label": _("Einkaufen"),
-			"items": [
-				{
-					"type": "doctype",
-					"name": "Einkaufsliste",
-				}
-			]
-		},
-		{
-			"label": _("Settings"),
-			"items": [
-				{
-					"type": "doctype",
-					"name": "User Card",
-				}
-			]
-		},
+    return [
         {
-			"label": _("Daten"),
-			"items": [
-				{
-					"type": "doctype",
-					"name": "Zutaten",
-				},
+            "label": _("Kochen"),
+            "items": [
                 {
-					"type": "doctype",
-					"name": "uom",
-				},
+                    "type": "doctype",
+                    "name": "Rezept",
+                },
                 {
-					"type": "doctype",
-					"name": "Origin",
-				},
-				{
-					"type": "doctype",
-					"name": "Market",
-				},
-			]
-		},
-	]
+                    "type": "page",
+                    "name": "rezept_kochen",
+                    "label": "Rezept Kochen"
+                },
+                {
+                    "type": "page",
+                    "name": "find-recipe",
+                    "label": "Find recipe"
+                }
+            ]
+        },
+        {
+            "label": _("Einkaufen"),
+            "items": [
+                {
+                    "type": "doctype",
+                    "name": "Einkaufsliste",
+                }
+            ]
+        },
+        {
+            "label": _("Settings"),
+            "items": [
+                {
+                    "type": "doctype",
+                    "name": "User Card",
+                }
+            ]
+        },
+        {
+            "label": _("Daten"),
+            "items": [
+                {
+                    "type": "doctype",
+                    "name": "Zutaten",
+                },
+                {
+                    "type": "doctype",
+                    "name": "uom",
+                },
+                {
+                    "type": "doctype",
+                    "name": "Origin",
+                },
+                {
+                    "type": "doctype",
+                    "name": "Market",
+                },
+            ]
+        },
+    ]

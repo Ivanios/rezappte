@@ -98,7 +98,7 @@ website_route_rules = [
 
 scheduler_events = {
     "daily": [
-        "rezappte.rezappte.doctype.shopping_list.shopping_list.delete_shopping_lists"
+        "rezappte.rezappte.doctype.einkaufsliste.einkaufsliste.delete_shopping_lists"
     ]
 }
 

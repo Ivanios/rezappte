@@ -7,6 +7,12 @@
  "field_order": [
   "user",
   "favorite_market",
+  "color_scheme_section",
+  "color_scheme",
+  "choose_own_colors",
+  "column_break_7",
+  "background_color",
+  "font_color",
   "ingredients_at_home_section",
   "ingredients_at_home"
  ],
@@ -40,9 +46,42 @@
    "reqd": 1,
    "set_only_once": 1,
    "unique": 1
+  },
+  {
+   "fieldname": "color_scheme_section",
+   "fieldtype": "Section Break",
+   "label": "Color Scheme"
+  },
+  {
+   "depends_on": "eval: doc.choose_own_colors;",
+   "fieldname": "background_color",
+   "fieldtype": "Color",
+   "label": "Background Color"
+  },
+  {
+   "depends_on": "eval: doc.choose_own_colors;",
+   "fieldname": "font_color",
+   "fieldtype": "Color",
+   "label": "Font Color"
+  },
+  {
+   "fieldname": "color_scheme",
+   "fieldtype": "Link",
+   "label": "Color Scheme",
+   "options": "Color Scheme"
+  },
+  {
+   "default": "0",
+   "fieldname": "choose_own_colors",
+   "fieldtype": "Check",
+   "label": "Choose own Colors"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
   }
  ],
- "modified": "2024-08-21 21:02:03.284737",
+ "modified": "2024-08-27 22:47:00.047605",
  "modified_by": "Administrator",
  "module": "Rezappte",
  "name": "User Card",

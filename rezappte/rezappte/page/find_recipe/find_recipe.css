@@ -1,0 +1,101 @@
+.ingredient_input_1 {
+    width: 40%;
+}
+
+.ingredient_input_2 {
+    width: 40%;
+    display: none;
+}
+
+.ingredient_input_3 {
+    width: 40%;
+    display: none;
+}
+
+.ingredient_input_4 {
+    width: 40%;
+    display: none;
+}
+
+.ingredient_input_5 {
+    width: 40%;
+    display: none;
+}
+
+.outer-div {
+    width: 100%;
+    height: auto;
+}
+
+.layout-main-section {
+    border: None;
+}
+
+.title {
+    font-size: 3.5rem;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+/* Dropdown Toggle Styling */
+.option {
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    margin: 10px 0;
+    padding: 5px 0;
+}
+
+.option:hover {
+    color: #3498db;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);  /* Fügt einen leichten Schatten hinzu */
+}
+
+/* Rezept-Link Styling */
+.recipe_0, .recipe_1, .recipe_2, .recipe_3, .recipe_4 {
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 2rem;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    margin-bottom: 0px;  /* Setzt den Abstand auf Null */
+    padding-bottom: 6px !important;
+}
+
+.recipe_0:hover, .recipe_1:hover, .recipe_2:hover, .recipe_3:hover, .recipe_4:hover {
+    color: #e74c3c;
+    transform: scale(1.05);
+}
+
+/* Zutaten Styling */
+.ingredients_0, .ingredients_1, .ingredients_2, .ingredients_3, .ingredients_4 {
+    margin-top: 2px;  /* Minimaler Abstand zwischen Rezept und Zutaten */
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-top: 0px !important;
+    font-size: 1.2rem;
+}
+
+/* Transition für die ausgeblendeten Elemente */
+#find_by_ingredients {
+    transition: all 0.5s ease-in-out;
+}
+
+.recipe_0, .recipe_1, .recipe_2, .recipe_3, .recipe_4, 
+.ingredients_0, .ingredients_1, .ingredients_2, .ingredients_3, .ingredients_4 {
+    padding: 10px 0;
+}
+
+.normal-text {
+    font-size: 1.7rem;
+}
+
+@media (max-width: 768px) {
+    .outer-div {
+        padding-left: 15px; /* Abstand zur linken Seite */
+        padding-right: 15px; /* Optional: Abstand zur rechten Seite */
+    }
+}
